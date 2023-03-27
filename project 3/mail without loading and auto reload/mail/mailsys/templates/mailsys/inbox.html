@@ -1,0 +1,111 @@
+{% extends "mailsys/layout.html" %} {% load static %} {% block body %}
+<!-- <div class="navbar">
+    <div>
+      <h2 style="margin-left:1rem">Mail</h2>
+    </div>
+    <div style="margin-right:1rem">
+      <ul style="margin:0px">
+        <li><a href='/login' id="login">Login</a></li>
+        <li><a href='{% url "register" %}' id="register">Register</a></li>
+      </ul>
+    </div>
+</div> -->
+<!-- <hr style="margin:0px"> -->
+<div class="menuGrid">
+  <div class="left">
+    <ul id="navlist">
+      <li>
+        <button id="inbox">Inbox</button>
+      </li>
+      <li>
+        <button id="compose">Compose</button>
+      </li>
+      <li>
+        <button id="sent">Sent</button>
+      </li>
+      <li>
+        <button id="archive">Archive</buttons>
+      </li>
+    </ul>
+  </div>
+
+  <div class="verticalLine"></div>
+
+  <div class="content">
+    <div>
+      <h2>Welcome : {{request.user}}</h2>
+      <h2 id="topic">data shown here</h2>
+    </div>
+
+    <hr>
+    <br>
+
+    <div id="emailsView">
+      <!-- Emails view -->
+      <div id="detailedViewOfEmail">
+        <h2 id="D_subject" style="margin-top:0px;"></h2>
+        <label id="D_time"></label>
+        <br>
+        <br>
+        <b>From : </b><label id="D_sender"></label>
+        <br>
+        <br>
+        <b>To : </b><label id="D_recipiants"></label>
+        <br>
+        <br>
+  
+        <div id="re_fo_ar">
+          <button id="reply" class="button">&larr; Reply</button>
+          <button id="forward" class="button">Forward &rarr; </button>&nbsp;&nbsp;
+          <button id="archive_mail" class="button">&darr; Archive</button>
+        </div>
+        
+        <hr>
+        <p id="D_body"></p>
+      </div>
+    </div>
+
+    <div id="composeView">
+      <!-- Compose view -->
+      <!-- <h2>New mail</h2> -->
+
+      <!-- <form action="compose" method="post" enctype="application/x-www-form-urlencoded"> -->
+      <form id="composeForm">
+        {% csrf_token %}
+
+        <div class="composeViewContainer">
+
+          <div><label>From:</label><input id="from" disabled name="from" type="text" value={{user.username}} /></div>
+
+          <div>
+            <label>To:</label><input id="recipiants" name="recipiants" required type="email" multiple/>
+          </div>
+
+          <div><label>Subject:</label><input type="text" id="subject" name="subject" required/></div>
+
+          <div><label>Body:</label><textarea id="body" name="body" style required></textarea></div>
+
+          <input hidden id="composeFlag">
+          <input hidden id="composeLoadValue">
+          <!-- <input hidden id="rawbody"> -->
+
+          <div style="display:block;text-align:center;">
+            <button class="button" type='submit' id='submitcomposed' name='submitcomposed' value="compose">Send</button>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+<script>
+  var CSRF_TOKEN='{{csrf_token}}'
+</script>
+
+{% endblock %}
+
+{% block script %}
+  <script src="{% static 'mailsys/inbox.js' %}"></script> 
+{% endblock %}
