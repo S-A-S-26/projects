@@ -1,0 +1,19 @@
+{% extends 'auction/layout.html' %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="login_container">
+        <div class="create_listing">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'create_listing' %}">
+                {% csrf_token %}
+                {{form.as_div}}
+                <!-- <input type="number" Placeholder="in Rupees" name="starting_bid"> -->
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}

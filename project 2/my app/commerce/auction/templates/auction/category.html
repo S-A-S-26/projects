@@ -1,0 +1,29 @@
+{% extends 'auction/layout.html' %}
+{% load static %}
+
+{% block head %}
+    <style>
+        a{
+            text-decoration: None;
+            color:white;
+            
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="inner_container">
+    <h2 style="text-align:center;">Categories</h2>
+    <div class="listing_holder">
+        <a href="category/Toys"><div class="Categories" style="background-image:url('static/auction/cartoon_toys.jpg');"><h2>Toys</h2></div></a>
+        <a href="category/Electronics"><div class="Categories" style="background-image:url('static/auction/electronics.jpg');"><h2>Electronics</h2></div></a>
+        <a href="category/Fashion"><div class="Categories" style="background-image:url('static/auction/clothes.jpg');"><h2>Fashion</h2></div></a>
+        <a href="category/Household"><div class="Categories" style="background-image:url('static/auction/household.jpg');"><h2>Household</h2></div></a>
+        <a href="category/Entertainment"><div class="Categories" style="background-image:url('static/auction/entertainment.jpg');"><h2>Entertainment</h2></div></a>
+        <a href="category/Automobiles"><div class="Categories" style="background-image:url('static/auction/automobiles.jpg');"><h2>Automobiles</h2></div></a>
+        <a href="category/Collectibles"><div class="Categories" style="background-image:url('static/auction/collect.jpg');"><h2>Collectibles</h2></div></a>
+        <a href="category/Clothing & accessories"><div class="Categories" style="background-image:url('static/auction/acces.jpg');"><h2>Clothing & accessories</h2></div></a>
+        <a href="category/Others"><div class="Categories" style="background-image:url('static/auction/other.jpg');"><h2>Others</h2></div></a>
+    </div>
+</div>    
+{% endblock %}

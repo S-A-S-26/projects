@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}Auction</title>
+        {% block head %}
+        {% endblock %}
+        <link rel="stylesheet" href="{% static 'auction/style.css' %}">
+    </head>
+    <body>
+        <div class="grand_container">
+            <div id="div_title_main">
+                <h1 id="title_main">Auctions</h1>
+    
+                <div id="header">
+                    <div class="left_header">
+                        <ul class="title_link">
+                            <li class="title_links"><a href="{% url 'index' %}">Active Listings</a></li>
+                            <li class="title_links">|</li>
+                            <li class="title_links"><a href="{% url 'category' %}">Categories</a></li>
+                            <li class="title_links">|</li>
+                            <li class="title_links"><a href="{% url 'watchlist' %}">Watchlist</a></li>
+                            <li class="title_links">|</li>
+                            <li class="title_links"><a href="{% url 'create_listing' %}">Create Listing</a></li>  
+                            <li class="title_links">|</li> 
+                            {% if user.is_authenticated %}   
+                                <li class="title_links"><a href="{% url 'notification' %}">Notifications</a></li>  
+                                <li class="title_links">|</li>               
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="right_header">
+                        {% if user.is_authenticated %}
+                            <ul class="title_link">
+                                <li class="title_links" style="list-style:none;"><p style="color:green;">Signed as :<strong>{{user.username}}</strong></p></li>
+                                <li class="title_links">|</li>
+                                <li class="title_links" style="list-style:none;"><a class="title_links" href="{% url 'log-out' %}">Log Out</a></li>
+                            </ul>
+                            
+                        {% else %}
+                            <ul class="title_link">
+                                <li class="title_links" style="list-style:none;"><p style="color:rgb(223, 22, 22);">&bull;&nbsp;Not signed in</p></li>
+                                <li class="title_links">|</li>
+                                <li class="title_links" style="list-style:none;"><a class="title_links" href="{% url 'log-in' %}">Log In</a></li>
+                            </ul>
+                        {% endif %}
+                        <!-- <div class="login_status">
+                            {% if user.is_authenticated %}
+                                <p>Signed as :<strong>{{user.username}}</strong></p>
+                            {% else %}
+                                <p>Not signed in</p>
+                            {% endif %} 
+                        </div>-->
+                        
+                    </div>
+                    
+                </div>
+    
+            </div>
+        
+            <div class="container">
+                {% block body %}
+                {% endblock %}
+            </div>   
+
+        </div>
+        
+    </body>
+</html>

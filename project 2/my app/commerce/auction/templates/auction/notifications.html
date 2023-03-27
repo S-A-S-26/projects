@@ -1,0 +1,34 @@
+{% extends 'auction/layout.html' %}
+{% load static %}
+{% block body %}
+<div class="inner_container">
+    <h2 style="text-align:center;">Notificatons</h2>
+    <div class="listing_holder">
+        {% for notification in notifications %}
+
+                    <div class="list">
+                        <div class="image">
+                            {% if notification.Display_Image %}
+                                <img src="/media/{{notification.Display_Image}}">
+                            {% else %}
+                                <!-- <p>No image posted by user</p> -->
+                                <img src="/media/no-image-available-icon.jpg">
+                            {% endif %}
+                            <!-- {{list.Display_Image}} -->
+                        </div>
+                        <div class="details">
+                            <div><h4 style="color:rgb(52 124 43)">{{notification.Status}} &#8377;</h4></div><br>
+                            <div><h3>{{notification.Title}}</h3></div><br>
+                            <div><h4><strong>Price:  </strong>{{notification.Price}} &#8377;</h4></div><br>
+                            <div><strong>Description:  </strong>{{notification.Description}}</div><br> 
+                            <!-- <div>{{list.id}}</div>       -->
+                        </div>
+                   </div>
+
+               
+        {% empty%}
+        Nothing Here! Come back later
+        {% endfor %}
+    </div>
+</div>    
+{% endblock %}
