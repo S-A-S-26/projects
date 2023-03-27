@@ -1,0 +1,35 @@
+{% extends "mywikiapp/layout.html" %}
+
+{% block title %}
+    Add Images
+{% endblock %}
+
+{% block head %}
+    <style>
+        .rightpart{
+            /* border:black solid; */
+            display:grid;
+            place-items: center;
+        }
+    </style>
+{% endblock head %}
+
+{% block body %}
+
+<div class="btn"> 
+    <!-- <form class="add_images" enctype="mutipart/form-data"  name="Upload_Photos" action="{% url 'mywikiapp:save_image' %}" method="POST"> -->
+    <form class="add_images" enctype="multipart/form-data" name="Upload_Images" action="{% url 'mywikiapp:save_image' %}" method="POST">
+        <div>
+            <input type="submit" value="Save Images">
+            {% csrf_token %}
+            {{formimg.management_form}}
+            {% for i in formimg %}
+                {{i}}
+            {% endfor %} 
+        </div>
+        <!-- {{formimg}} -->
+        <!-- <input required name="images" type="file" multiple="multiple" name="images"> -->
+    </form>     
+</div>
+
+{% endblock %}

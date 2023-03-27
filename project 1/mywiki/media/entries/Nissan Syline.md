@@ -1,0 +1,9 @@
+#Nissan syline GTR R-34
+
+![Nissan](/media/images/Nissan-Skyline-R34-GT-R-10a.jpg)
+
+The *Nissan Skyline GT-R* (Japanese: 日産・スカイラインGT-R, Hepburn: Nissan Sukairain GT-R) is a sports car based on the [Nissan Skyline](https://en.wikipedia.org/wiki/Nissan_Skyline) range. The first cars named "Skyline GT-R" were produced between 1969 and 1972 under the model code KPGC10, and were successful in Japanese touring car racing events. This model was followed by a brief production run of second-generation cars, under model code KPGC110, in 1973.
+
+After a 16-year hiatus, the GT-R name was revived in 1989 as the BNR32 ("R32") Skyline GT-R. Group A specification versions of the R32 GT-R were used to win the Japanese Touring Car Championship for four years in a row. The R32 GT-R also had success in the Australian Touring Car Championship, with Jim Richards using it to win the championship in 1991 and Mark Skaife doing the same in 1992, until a regulation change excluded the GT-R in 1993. The technology and performance of the R32 GT-R prompted the Australian motoring publication Wheels to nickname the GT-R "Godzilla" in its July 1989 edition.[1][2] Wheels then carried the name through all the generations of Skyline GT-Rs, most notably the R34 GT-R, which they nicknamed "Godzilla Returns", and described as "The best handling car we have ever driven". In tests conducted by automotive publications, R34 GT-R have covered a quarter of a mile  (402 metres) in 12.2 seconds from a standing start time and accelerated from 0–100 km/h (0–62 mph) in 4.4 seconds. It was one of the fastest accelerating production vehicles at the time.
+
+#this page was edited

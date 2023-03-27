@@ -1,0 +1,76 @@
+{% extends "mywikiapp/layout.html" %}
+
+
+
+
+{% block title %}
+    Entry Page
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="..\..\static\mywikiapp\style.css">
+    <style>
+        #Alertmessage{
+        
+        background-color: rgb(90, 221, 90);;
+        fill-opacity: 50%;
+        color:white;
+        border:none;
+        border-radius: 8px;
+        text-align: center;
+        height: 46px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    </style>
+    <script>
+                document.addEventListener('DOMContentLoaded',function(){ 
+                let dhe=document.getElementById('Alertmessage');
+                setTimeout(function(){dhe.remove();},3000);});
+    </script>
+{% endblock %}
+
+{% block body %}
+    {% if messages %}
+    {% for message in messages %}
+    <div id="Alertmessage" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- <script>
+        setTimeout(function(){
+            if ($('#msg').length > 0) {
+                $('#msg').remove();
+            }
+        }, 2000)    // 2000 millisecond
+    </script> -->
+    <h1 style="font-weight:500;">New Entry</h1>
+    <form id="create_new" enctype="multipart/form-data" action="{% url 'mywikiapp:save' %}" method="POST">
+        {% csrf_token %}
+        <div class="something">
+            <div class="container_new_entry">
+                <div class="inputfields"><input id="Title" type="text" placeholder="Title Here" name="Title"></div>
+                <div class="text_area_container"><div class="inputfields2"><textarea placeholder="Add Contents Using markdown language.&#10;&#10;&bull;If adding a image or a hyperlink no need for double quote encapsulation for the link.&#10;&#10;&bull;For images add '/media/images/' before the image name Eg: /media/images/example.jpg." id="textarea" name="content"></textarea></div></div>
+                <div class="btn">
+                    <input  type="submit" name="save" value="Save">
+                    <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Upload Images:&nbsp;</label> -->
+                    <!-- <a href="{% url 'mywikiapp:add_images' %}">Upload Images here</a> -->
+                    <!-- {% csrf_token %} -->
+                    <!-- {% csrf_token %}
+                    {{formimg.management_form}}
+                    {% for i in formimg %}
+                        {{i}}
+                    {% endfor %}  -->
+                    <!-- {{formimg}} -->
+                    <!-- <input required name="images" type="file" multiple="multiple" name="images"> -->
+                </div>
+            </div>
+            
+        </div>
+    </form>
+    
+{% endblock %}

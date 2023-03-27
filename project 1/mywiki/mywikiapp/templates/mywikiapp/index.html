@@ -1,0 +1,64 @@
+{% extends "mywikiapp/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block head %}
+    <style>
+        /* .message_container{
+            margin:auto;
+            border:black solid;
+        } */
+
+        #Alertmessage{
+        
+        background-color: rgb(90, 221, 90);;
+        opacity: 0.7;
+        color:white;
+        border:none;
+        border-radius: 8px;
+        text-align: center;
+        height: 46px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        max-width:90%;
+        margin:auto;
+    }
+
+    </style>
+    <script>
+                document.addEventListener('DOMContentLoaded',function(){ 
+                let dhe=document.getElementById('Alertmessage');
+                setTimeout(function(){dhe.remove();},3000);});
+    </script>
+{% endblock %}
+
+
+{% block body %}
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="message_container">
+            <div id="Alertmessage" role="alert">
+                {{message}}
+            </div>
+        </div>
+            
+        {% endfor %}
+    {% endif %}
+
+    <h1 style="font-weight:600;">Topics</h1>
+
+
+
+    <ul>
+        
+        {% for entry in entries %}
+            <!-- {} -->
+            <li><a style="text-decoration:none;color:inherit;" href="/mywikiapp/wikipages/{{entry}}">{{ entry }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

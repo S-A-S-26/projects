@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- <title>Encyclopedia</title> -->
+        <title>{% block title %} {% endblock %}</title>
+        <link rel="stylesheet" href="..\..\static\mywikiapp\style.css">
+        
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+
+       
+       
+       <div class="main">
+
+            <div class="leftpart">
+
+                <h2 id="leftheading">Wiki</h2>
+
+                <div class="search_container_confinement">
+                    <form action="{% url 'mywikiapp:search' %}">
+                        <div class="searchcontainer">
+                            <input list="search_opt" type="text" name="q" placeholder="Search Wiki">
+                            <datalist id="search_opt">                                
+                                    {% for entry in entries %}
+                                        <option>{{entry}}</option>  
+                                    {% endfor %}                                                             
+                            </datalist>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="listcontainer">
+                    <ul id="left_col_li">
+                        <li><a href="{% url 'mywikiapp:index' %}">Home</a></li>
+                        <li><a href="{% url 'mywikiapp:create_new' %}">Create New Page</a></li>
+                        <li><a href="{% url 'mywikiapp:add_images' %}">Upload Images</a></li>
+                        <li><a href="{% url 'mywikiapp:random' %}">Random Page</a></li>
+                        {% block list %}{% endblock %}
+                    </ul>
+                </div>
+
+                <div class="navbar">
+                    <div>
+                        {% block navbar %}{% endblock %}
+                    </div>
+                </div>
+
+            </div>
+
+       
+       
+        
+
+        
+        
+        
+        
+        
+        
+        
+            <div class="rightpart">
+
+       <!--         <h1>All Pages</h1>
+ 
+                <div>
+                    <ul>
+                        <li>Css</li>
+                        <li>Django</li>
+                        <li>Git</li>
+                        <li>HTML</li>
+                        <li>Python</li>
+                    </ul>
+                </div> -->
+                {% block body %}{% endblock %}
+            </div> 
+        
+            
+   
+   
+   
+   
+   
+   
+        </div>
+   
+    </body>
+
+</html>

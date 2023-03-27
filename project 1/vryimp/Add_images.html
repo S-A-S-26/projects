@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Upload images</title>
+
+        <style>
+            body {
+
+                height:100vh;
+                width:100vh;
+            }
+            .rightpart{
+                /* border:black solid; */
+                display:grid;
+                place-items: center;
+                height:100%;
+                width:100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="rightpart">
+            <div class="btn"> 
+                <form enctype="multipart/form-data" action="{% url 'mywikiapp:save_image' %}" method="POST">
+                    <div>
+                        <input type="submit" value="Save Images">
+                        {% csrf_token %}
+                        <!-- {{formimg.management_form}} -->
+                        {% for i in formimg %}
+                            {{i}}
+                        {% endfor %} 
+                    </div>
+                    <!-- {{formimg}} -->
+                    <!-- <input required name="images" type="file" multiple="multiple" name="images"> -->
+                </form>     
+            </div>
+        </div>
+        
+    </body>
+</html>
+

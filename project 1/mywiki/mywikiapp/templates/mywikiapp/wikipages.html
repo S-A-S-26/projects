@@ -1,0 +1,26 @@
+{% extends "mywikiapp/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block head %}
+    <style>
+        /* .rightpart{
+            border:black solid;
+        } */
+        .rightpart>p>img{
+            max-width: 90%;
+        }
+    </style>
+{% endblock %}
+
+{% block list %}
+<li><a href="wikipageedit/{{title}}" name="Edit-Page" value="">Edit Current Wikipage</a></li>
+{% endblock %}
+
+{% block body %}
+
+    {{ pagecontent|safe }}
+
+{% endblock %}
