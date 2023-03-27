@@ -1,0 +1,11 @@
+1.simple mail 1 recipiant?-pass
+2.read-pass
+3.email to multiple recipiants-pass
+4.reply-pass
+5.reply.reply
+6.forward-pass
+7.forward.forward-pass
+8.archive-pass
+9.text area size is too big.
+10.timestamp needs correction.-pass
+11.issue at 278 if conditons-pass

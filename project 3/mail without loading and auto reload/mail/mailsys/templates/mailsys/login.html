@@ -1,0 +1,36 @@
+{% extends 'mailsys/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+    <div id="LoginView" class="logReg">
+        <form action="login" method="post">
+            {% csrf_token %}
+            <div>
+                <h3 style="margin: 10px auto 2px auto;">Login</h3>
+                <div>
+                    <label>Email</label><input required='true' type='email' id='emailReg' name='emailReg'/>
+                </div>
+                <div>
+                    <label>Password</label><input required='true' type='password' id='passwordReg' name='passwordReg'/>
+                </div>
+                <div>
+                    <button type='submit' id='submitreg' name='submitlog'>Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    const alert=document.getElementById('alert')
+    setInterval(()=>{
+        console.log('im running')
+        if (alert.innerHTML!=""){
+            console.log('i ran')
+            setTimeout(()=>{alert.innerHTML=""},3000)
+        }
+    },1000)
+  </script> 
+{% endblock %}
