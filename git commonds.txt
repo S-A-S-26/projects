@@ -1,0 +1,5 @@
+git branch =lists the name of branches
+git checkout 'branch name'=switch to new branch
+git pull =get all the new changes from the repo
+git push -u origin 'branch name'=to push it to repo -u is for upstream
+git checkout -b 'branchname'=creates a new branch and switch to it
