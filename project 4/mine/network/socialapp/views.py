@@ -214,7 +214,16 @@ def postUpdate(request):
                 print(request.FILES.get(i))
                 postimages=PostImages(post=post,image=request.FILES.get(i))
                 postimages.save()    
-        
+    if request.method=='DELETE':
+        print('ok') 
+        data=json.loads(request.body)   
+        print(data)
+        post=Posts.objects.get(id=data['id'])
+        images=post.images.all().values_list('image',flat=True)
+        print(images)
+        for i in images:
+            os.remove(os.path.join(settings.MEDIA_ROOT,i)) 
+        post.delete()   
     return JsonResponse({"status":"Working"})
 
 def getComments(request,id):

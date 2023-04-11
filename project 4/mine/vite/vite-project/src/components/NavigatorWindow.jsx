@@ -11,11 +11,21 @@ export default function NavigatorWindow({ getCsrf, csrfValue, getProfile,profile
   //   setProfileData(value)
   // };
 
-
+  useEffect(() => {
+    getProfile("/");
+    // fetchPosts("all");
+    // setInterval()
+  }, []);
 
 
   return (
     <div className="NavigatorWindow">
+      <div className="navProfilepic">
+        <div>
+          <img src={profileData.profilepic===""?'media/profilepic/noprofile.png':`media/${profileData.profilepic}`} />
+        </div>
+        <b>{profileData.username}</b>
+      </div>
       <div>
         <div>
             <button onClick={()=>{getProfile('/Profile')}}>Profile</button>

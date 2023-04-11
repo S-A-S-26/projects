@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function Dropdown({post,setEditPost,setEditPost_Post}) {
+export default function Dropdown({post,setEditPost,setEditPost_Post,getCsrf,csrfValue,fetchPosts}) {
     const [options,setOptions]=useState('none')
     const navigate=useNavigate()
 
@@ -40,7 +40,24 @@ export default function Dropdown({post,setEditPost,setEditPost_Post}) {
         setEditPost_Post(post)
     }
 
-
+    const handleRemove=async()=>{
+        await getCsrf;
+        let csrf = csrfValue();
+    
+        let opt = {
+          method: "DELETE",
+          headers: {
+            "X-CSRFToken": csrf,
+          },
+          body: JSON.stringify({'id':post.id}),
+        };
+    
+        let res = await fetch("/socialapp/updatePost", opt);
+        console.log(res);
+        let value = await res.json();
+        console.log(value);
+        fetchPosts("all")
+    }
     
   return (
     <div className='dropDown'>
@@ -50,7 +67,7 @@ export default function Dropdown({post,setEditPost,setEditPost_Post}) {
         <div style={{display:options}} className='options'>
             <button className='postEdit' onClick={handleEditPost}>Edit</button>
             <hr/>
-            <button className='postRemove'>Remove</button>
+            <button className='postRemove' onClick={handleRemove} >Remove</button>
         </div>
     </div>
   )
