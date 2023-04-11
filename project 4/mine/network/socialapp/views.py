@@ -149,7 +149,7 @@ def getPosts(request,type):
         posts=userprofile.Posts.all()
         print(posts)
     elif type=='all':
-        posts=Posts.objects.all()
+        posts=Posts.objects.all().order_by('-timestamp_created')
     return JsonResponse([post.Serialize(accountUserName) for post in posts],safe=False)
 
 def postUpdate(request):
@@ -187,7 +187,34 @@ def postUpdate(request):
                 comment.save()
             if action=='delete':
                 comment=Comments.objects.get(id=id)
-                comment.delete()                    
+                comment.delete()
+
+    if request.method=='POST':
+        print(request.POST)                    
+        print(request.FILES)
+        id=request.POST.get('id')
+        filesToDelete=request.POST.get('filesToDelete')
+        description=request.POST.get('edited_description')
+        print(description)
+        post=Posts.objects.get(id=id)
+        post.description=description
+        post.save()
+
+        if (filesToDelete):
+            delImgList=list(filesToDelete.split(','))  
+            print(delImgList)  
+            for i in delImgList:
+                print(i)
+                image=PostImages.objects.get(image=i)
+                print(image)
+                image.delete()
+                os.remove(os.path.join(settings.MEDIA_ROOT,i))
+        if request.FILES:
+            for i in request.FILES:
+                print(request.FILES.get(i))
+                postimages=PostImages(post=post,image=request.FILES.get(i))
+                postimages.save()    
+        
     return JsonResponse({"status":"Working"})
 
 def getComments(request,id):

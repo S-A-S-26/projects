@@ -22,19 +22,19 @@ export default function NavigatorWindow({ getCsrf, csrfValue, getProfile,profile
           {/* <Link to="/Profile">
           </Link> */}
         </div>
-        <hr />
+        {/* <hr /> */}
         <div>
           <Link onClick={()=>{fetchPosts('all')}} to="/">Posts</Link>
         </div>
-        <hr />
+        {/* <hr /> */}
         <div>
           <Link to="#">Following</Link>
         </div>
-        <hr />
+        {/* <hr /> */}
         <div>
           <Link to="/AddPost">Add a Post</Link>
         </div>
-        <hr />
+        {/* <hr /> */}
       </div>
     </div>
   );
