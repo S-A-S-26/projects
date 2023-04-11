@@ -39,8 +39,8 @@ class Posts(models.Model):
         return {
             "id":self.id,
             "username":self.user.user.username,
-            "timestamp_created":self.timestamp_created,
-            "timestamp_updated":self.timestamp_updated,
+            "timestamp_created":self.timestamp_created.strftime(r"%x %I:%M:%S %p UTC"),
+            "timestamp_updated":self.timestamp_updated.strftime(r"%x %I:%M:%S %p UTC"),
             "description":self.description,
             "like":[likes.username for likes in self.likes.all()],
             # "post_images":[self.images.all().values_list('image',flat=True)],

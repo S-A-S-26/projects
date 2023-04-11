@@ -11,12 +11,15 @@ import EditProfile from './components/EditProfile'
 import Registration from './components/Registration'
 import Posts from './components/Posts'
 import AddPost from './components/AddPost'
+import EditPost from './components/EditPost'
 
 function App() {
   const [showLogin, setLogin] = useState(false)
   const [showReg, setReg] = useState(false)
   const [profileData,setProfileData] = useState({})
   const [posts,setPosts]=useState([])
+  const [editPost,setEditPost]=useState(false)
+  const [editPost_Posts,setEditPost_Post]=useState({})
   const navigate=useNavigate()
 
 
@@ -77,14 +80,15 @@ function App() {
         <Navbar {...{getCsrf,setLogin,setReg}}/>
         <Login {...{showLogin,setLogin,getCsrf,csrfValue}}/>
         <Registration {...{showReg,setReg,getCsrf,csrfValue}}/>
-       
+        <EditPost {...{editPost,setEditPost,editPost_Posts,getCsrf,csrfValue,fetchPosts}}/>
+
         <div className='containerdiv'>
           <NavigatorWindow {...{getCsrf,csrfValue,getProfile,setProfileData,fetchPosts}}/>
           <div className='mainContent'>
            
             <Routes>
               <Route exact path='/AddPost' element={<AddPost {...{getCsrf,csrfValue}}/>}/>
-              <Route exact path='/' onEnter={()=>{getProfile('/Profile');fetchPosts('all');}} element={<Posts {...{getProfile,fetchPosts,posts,getCsrf,csrfValue}}/>}/>
+              <Route exact path='/' onEnter={()=>{getProfile('/Profile');fetchPosts('all');}} element={<Posts {...{getProfile,fetchPosts,posts,getCsrf,csrfValue,setEditPost,setEditPost_Post}}/>}/>
               <Route exact path='/Profile' element={<Profile {...{profileData}}/>}/>
               <Route exact path='/updateProfile' element={<EditProfile {...{getCsrf,csrfValue,getProfile,profileData}}/>}/>
             </Routes>

@@ -92,7 +92,7 @@ export default function AddPost({getCsrf,csrfValue}) {
 
             <div>
                 <div>
-                    <textarea maxLength='255' name='description' placeholder='Type your Post here'></textarea>
+                    <textarea id='addPostTextarea' maxLength='255' name='description' placeholder='Type your Post here'></textarea>
                 </div>
                 <div>
                     <label className='fakebutton' htmlFor='add_postimages'>Add Image</label>

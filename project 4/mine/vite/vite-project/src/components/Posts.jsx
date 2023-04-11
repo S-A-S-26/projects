@@ -6,6 +6,7 @@ import comment from "../assets/comment.png";
 import follow from "../assets/follow_.png";
 import unfollow from "../assets/unfollow_.png";
 import Comments from "./Comments";
+import Dropdown from "./Dropdown";
 
 export default function Posts({
   getProfile,
@@ -13,6 +14,8 @@ export default function Posts({
   posts,
   getCsrf,
   csrfValue,
+  setEditPost,
+  setEditPost_Post
 }) {
   useEffect(() => {
     getProfile("/");
@@ -27,9 +30,20 @@ export default function Posts({
     console.log(posts);
   }, [posts]);
 
+  function convertDate(_string){
+    let date=new Date (Date.parse(_string))
+    return date.toLocaleString("en-US",{month:"short",day:"numeric",year:"numeric",hour:'numeric',minute:'numeric'}).replace(',','')
+    // .replace(/,/g,'&nbsp;')
+    // return date.toLocaleDateString()
+  }
+
   const genImage = (images) => {
     // console.log(images);
-
+    if (images[0]==""){
+      images.shift()
+      console.log('shift')
+      console.log(images)
+    }
     return images.map((image) => (
       <div>
         <img src={`/media/${image}`} />
@@ -174,17 +188,18 @@ export default function Posts({
               <Link to="#">
                 <b>{post.username}</b>
               </Link>
-              <label>{post.timestamp_created}</label>
+              <label>{convertDate(post.timestamp_created)}</label>
             </div>
+              <Dropdown {...{post,setEditPost,setEditPost_Post}}/>
           </div>
           <div className="postDescription">
             <p>{post.description}</p>
           </div>
           <div
-            style={{ display: post.post_images[0] === "" ? "none" : "flex" }}
+            style={{ display: post.post_images[0] === "" && post.post_images.length == 1 ? "none" : "flex" }}
             className="postDisplay_img"
           >
-            {post.post_images[0] === "" ? "" : genImage(post.post_images)}
+            {post.post_images[0] === "" && post.post_images.length == 1 ? "" : genImage(post.post_images)}
           </div>
           <div className="postInteractionbtn">
             <div>
