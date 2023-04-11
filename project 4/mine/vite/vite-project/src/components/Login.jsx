@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function Login({csrfValue,getCsrf,showLogin,setLogin}) {
+export default function Login({csrfValue,getCsrf,showLogin,setLogin,fetchPosts}) {
   const navigate=useNavigate()
 
   const handleLogin=async(e)=>{
@@ -34,6 +34,7 @@ export default function Login({csrfValue,getCsrf,showLogin,setLogin}) {
       console.log(val)
       setLogin(false)
       navigate('/')
+      // fetchPosts('all')
       console.log('/Posts')
     })
     .catch((err)=>{err})

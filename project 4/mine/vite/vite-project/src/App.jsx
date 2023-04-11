@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.scss'
@@ -12,6 +12,7 @@ import Registration from './components/Registration'
 import Posts from './components/Posts'
 import AddPost from './components/AddPost'
 import EditPost from './components/EditPost'
+import ImagePreview from './components/ImagePreview'
 
 function App() {
   const [showLogin, setLogin] = useState(false)
@@ -20,8 +21,15 @@ function App() {
   const [posts,setPosts]=useState([])
   const [editPost,setEditPost]=useState(false)
   const [editPost_Posts,setEditPost_Post]=useState({})
+  const [imgWin,setimgWin]=useState(false)
+  const [previewImg,setPreviewImg]=useState([])
   const navigate=useNavigate()
 
+  useEffect(() => {
+    getProfile("/");
+    fetchPosts("all");
+    // setInterval()
+  }, [showReg,showLogin]);
 
   const getCsrf=async()=>{
       console.log('getCSRF called')
@@ -78,17 +86,18 @@ function App() {
     <div className="App">
       {/* <Router basename='/socialapp'> */}
         <Navbar {...{getCsrf,setLogin,setReg}}/>
-        <Login {...{showLogin,setLogin,getCsrf,csrfValue}}/>
+        <Login {...{showLogin,setLogin,getCsrf,csrfValue,fetchPosts}}/>
         <Registration {...{showReg,setReg,getCsrf,csrfValue}}/>
         <EditPost {...{editPost,setEditPost,editPost_Posts,getCsrf,csrfValue,fetchPosts}}/>
+        <ImagePreview {...{imgWin,setimgWin,previewImg}}/>
 
         <div className='containerdiv'>
-          <NavigatorWindow {...{getCsrf,csrfValue,getProfile,setProfileData,fetchPosts}}/>
+          <NavigatorWindow {...{getCsrf,csrfValue,getProfile,setProfileData,fetchPosts,profileData}}/>
           <div className='mainContent'>
            
             <Routes>
               <Route exact path='/AddPost' element={<AddPost {...{getCsrf,csrfValue}}/>}/>
-              <Route exact path='/' onEnter={()=>{getProfile('/Profile');fetchPosts('all');}} element={<Posts {...{getProfile,fetchPosts,posts,getCsrf,csrfValue,setEditPost,setEditPost_Post}}/>}/>
+              <Route exact path='/' onEnter={()=>{getProfile('/Profile');fetchPosts('all');}} element={<Posts {...{getProfile,fetchPosts,posts,getCsrf,csrfValue,setEditPost,setEditPost_Post,setimgWin,previewImg,setPreviewImg,showReg,showLogin}}/>}/>
               <Route exact path='/Profile' element={<Profile {...{profileData}}/>}/>
               <Route exact path='/updateProfile' element={<EditProfile {...{getCsrf,csrfValue,getProfile,profileData}}/>}/>
             </Routes>

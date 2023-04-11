@@ -15,13 +15,19 @@ export default function Posts({
   getCsrf,
   csrfValue,
   setEditPost,
-  setEditPost_Post
+  setEditPost_Post,
+  setimgWin,
+  setPreviewImg,
+  showReg,
+  showLogin
 }) {
   useEffect(() => {
     getProfile("/");
     fetchPosts("all");
     // setInterval()
   }, []);
+
+
 
   useEffect(() => {
     // fetchPosts('self')
@@ -41,8 +47,6 @@ export default function Posts({
     // console.log(images);
     if (images[0]==""){
       images.shift()
-      console.log('shift')
-      console.log(images)
     }
     return images.map((image) => (
       <div>
@@ -174,6 +178,11 @@ export default function Posts({
     fetchPosts("all");
   };
 
+  const imgPreview=(images)=>{
+    setimgWin(true)
+    setPreviewImg(images)
+  }
+
   return (
     <div className="PostsDisplay">
       <h1>Posts</h1>
@@ -190,12 +199,13 @@ export default function Posts({
               </Link>
               <label>{convertDate(post.timestamp_created)}</label>
             </div>
-              <Dropdown {...{post,setEditPost,setEditPost_Post}}/>
+              <Dropdown {...{post,setEditPost,setEditPost_Post,getCsrf,csrfValue,fetchPosts}}/>
           </div>
           <div className="postDescription">
             <p>{post.description}</p>
           </div>
           <div
+            onClick={()=>{imgPreview(post.post_images)}}
             style={{ display: post.post_images[0] === "" && post.post_images.length == 1 ? "none" : "flex" }}
             className="postDisplay_img"
           >

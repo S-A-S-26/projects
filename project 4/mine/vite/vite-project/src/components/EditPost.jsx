@@ -11,10 +11,12 @@ export default function EditPost({
 }) {
   const [imgList, setImgList] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     console.log("data");
     console.log(editPost_Posts);
   }, [editPost_Posts]);
+  
   useEffect(() => {
     // console.log(editPost_Posts)
     console.log(imgList);
@@ -28,8 +30,25 @@ export default function EditPost({
 
   const [files, setFiles] = useState([]);
   const handleFiles = (e) => {
+    let postImg=[...editPost_Posts.post_images]
+    if (postImg[0]===""){
+      postImg.shift()
+    }
+    let delImg=imgList
+    console.log(files.length+(postImg.length-delImg.length))
+    if (e.target.files.length+(postImg.length-delImg.length) > 4){
+      return alert("Please select 4 or less than 4 images")
+    }
+
     setFiles(e.target.files);
+
   };
+
+  // useEffect(()=>{
+  //   if (editPost){
+
+  //   }
+  // },[files])
 
   const clearData = () => {
     setImgList([]);
