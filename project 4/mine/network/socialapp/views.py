@@ -60,8 +60,9 @@ def login_user(request):
             login(request,user)
         else:
             return JsonResponse({"error":"invalid credentials"})
-        return JsonResponse({"sucess":"logged in sucessfully"})
+        return JsonResponse({"status":"success"})
     return render(request,'socialapp/login.html')
+
 def logout_user(request):
     logout(request)
     return JsonResponse({"sucess":"logged out"})
@@ -92,8 +93,8 @@ def newPost(request):
 # @csrf_exempt
 def updateProfile(request):
     print('updateProfile')
-    user=User.objects.get(username=request.user.username)
     if request.method == 'POST':
+        user=User.objects.get(username=request.user.username)
  
         print(request.user)
         print(request.user.username)
@@ -129,12 +130,42 @@ def updateProfile(request):
 
         return JsonResponse({"status":"Working"})
     else:
+        if request.user.is_authenticated:    
+            user=User.objects.get(username=request.user.username)
+            status=False
+            if user==request.user:
+                status=True
+            profile=user.UserProfile
+            return JsonResponse(profile.Serialize(status),safe=False)
+        return JsonResponse({"status":"User unauthenticated"})
+
+def getProfile(request,type):
+    if request.user.is_authenticated:    
+        user=User.objects.get(username=request.user.username)
         status=False
-        if user==request.user:
+        print(type)
+        # if user==request.user:
+        if type=='self':
             status=True
-        profile=user.UserProfile
+            profile=user.UserProfile
+        # elif type.isnumeric():
+        #     # post=Posts.objects.get(id=type)
+        #     profile=UserProfile.objects.get( Posts__id=type)  
+        # else:  
+        #     UserProfile_id=type.split(":")
+        #     print(UserProfile_id)
+        #     profile=UserProfile.objects.get(id=UserProfile_id[1])
         return JsonResponse(profile.Serialize(status),safe=False)
-    
+    return JsonResponse({"status":"User unauthenticated"})    
+
+def getOtherProfile(request,type):
+        if type.isnumeric():
+            profile=UserProfile.objects.get( Posts__id=type)  
+        else:  
+            UserProfile_id=type.split(":")
+            print(UserProfile_id)
+            profile=UserProfile.objects.get(id=UserProfile_id[1])
+        return JsonResponse(profile.Serialize(status=False),safe=False)
 
 def getPosts(request,type):
     try:    
@@ -148,8 +179,15 @@ def getPosts(request,type):
         profilepic=userprofile.profilepic.name
         posts=userprofile.Posts.all()
         print(posts)
+    elif type=='following':
+        user=User.objects.get(username=request.user.username)
+        print(user)
+        posts=Posts.objects.all().filter(user__followers=user)    
     elif type=='all':
         posts=Posts.objects.all().order_by('-timestamp_created')
+    elif type.isnumeric():
+        posts=Posts.objects.all().filter(user__id=type)
+    posts=posts.order_by('-timestamp_created').all()    
     return JsonResponse([post.Serialize(accountUserName) for post in posts],safe=False)
 
 def postUpdate(request):
@@ -220,8 +258,10 @@ def postUpdate(request):
         print(data)
         post=Posts.objects.get(id=data['id'])
         images=post.images.all().values_list('image',flat=True)
-        print(images)
+        print('images',images,len(images))
         for i in images:
+            if i=="":
+                continue
             os.remove(os.path.join(settings.MEDIA_ROOT,i)) 
         post.delete()   
     return JsonResponse({"status":"Working"})
@@ -229,7 +269,28 @@ def postUpdate(request):
 def getComments(request,id):
     print('getComments')
     print(id)
-    user=User.objects.get(id=request.user.id)
     post=Posts.objects.get(id=id)
-    return JsonResponse([comments.serialize(user.username) for comments in post.comments.all().order_by('-id')],safe=False)
+    if request.user.is_authenticated:
+        user=User.objects.get(id=request.user.id)
+        return JsonResponse([comments.serialize(user.username) for comments in post.comments.all().order_by('-id')],safe=False)
+    else:
+        # user=''
+        return JsonResponse([comments.serialize("") for comments in post.comments.all().order_by('-id')],safe=False)
     # return JsonResponse({"status":"Working"})
+
+def getfollowing(request):
+    if request.user.is_authenticated:
+        user=User.objects.get(username=request.user.username)
+        following=user.UserProfile.following.all()
+        followingList=[]
+        for user in following:
+            followingList.append({
+                "username":user.username,
+                "profilepic":user.UserProfile.profilepic.name
+            })
+        print('following')
+        print(following)
+        print(followingList)
+        return JsonResponse(followingList,safe=False)
+    else:
+        return JsonResponse({"status":"No user login"})

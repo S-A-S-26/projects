@@ -1,0 +1,7 @@
+//1.on adding new post the main posts page is not refreshing
+//2.follow unfollow on others profile
+//3.user should not be allowed to follow self
+//4.on adding comment comment count not updating
+5.pointers needs to be updated
+6.pagination
+//7.when no user handle otheruserProfile

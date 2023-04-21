@@ -127,7 +127,7 @@ export default function EditPost({
                       >
                         <div className="imgMask">&#10060;</div>
                         <div id={i}>
-                          <img src={`media/${img}`} />
+                          <img src={`/media/${img}`} />
                         </div>
                       </button>
                     );

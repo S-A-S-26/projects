@@ -19,22 +19,51 @@ export default function Posts({
   setimgWin,
   setPreviewImg,
   showReg,
-  showLogin
+  showLogin,
+  postHeading,
+  profileData,
+  setLogin,
+  otherUserProfile,
+  handleFollow,
+  refresh,
+  getOtherProfile
 }) {
   useEffect(() => {
-    getProfile("/");
-    fetchPosts("all");
+    // if (postHeading==='Posts'){
+    //   getProfile();
+    //   fetchPosts("all");
+    // }
+    window.scrollTo(0,0)
+    console.log('this is profile data',profileData)
     // setInterval()
   }, []);
 
+  
 
 
-  useEffect(() => {
-    // fetchPosts('self')
-    // setInterval()
-    console.log("poposts");
-    console.log(posts);
-  }, [posts]);
+  // useEffect(() => {
+  //   // fetchPosts('self')
+  //   // setInterval()
+  //   console.log("poposts");
+  //   console.log(posts);
+  // }, [posts]);
+
+// useEffect(()=>{
+  
+// })
+  // const refresh=()=>{
+  //   console.log('refresh')
+  //   if (postHeading==='Posts'){
+  //     fetchPosts("all");
+  //   }else if (postHeading==='Following'){
+  //     console.log('following')
+  //     fetchPosts('following')
+  //   }else if (postHeading==='self'){
+  //     fetchPosts('self')
+  //   }else if (/^.*'s posts$/gm.test(postHeading)){
+  //     fetchPosts(otherUserProfile.id)
+  //   }
+  // }
 
   function convertDate(_string){
     let date=new Date (Date.parse(_string))
@@ -56,6 +85,11 @@ export default function Posts({
   };
 
   const handleLike = async (action, id) => {
+    if(profileData.status==='User unauthenticated'){
+      console.log('handlelike setLogin')
+      setLogin(true)
+      return
+    }
     await getCsrf;
     let csrf = csrfValue();
     const opt = {
@@ -69,7 +103,8 @@ export default function Posts({
     let response = await fetch("/socialapp/updatePost", opt);
     let value = await response.json();
     console.log(value);
-    fetchPosts("all");
+    refresh()
+
   };
 
   const [comments,setComments]=useState([])
@@ -127,10 +162,12 @@ export default function Posts({
     document.getElementById(`commentText${id}`).value=''
     // fetchPosts("all");
     fetchComment(id);
+    refresh()
   };
 
 
   const handleComment = (id) => {
+
     console.log(prevCommentBox)
     fetchComment(id)
     const commentDiv=document.querySelector(`#comment${id}`)
@@ -161,32 +198,37 @@ export default function Posts({
     }
   };
 
-  const handleFollow = async (action, id) => {
-    await getCsrf;
-    let csrf = csrfValue();
-    const opt = {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": csrf,
-      },
-      body: JSON.stringify({ actionName: "follow", action, id }),
-    };
-    let response = await fetch("/socialapp/updatePost", opt);
-    let value = await response.json();
-    console.log(value);
-    fetchPosts("all");
-  };
+  // const handleFollow = async (action, id) => {
+  //   if(profileData.status==='User unauthenticated'){
+  //     setLogin(true)
+  //     return
+  //   }
+  //   await getCsrf;
+  //   let csrf = csrfValue();
+  //   const opt = {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "X-CSRFToken": csrf,
+  //     },
+  //     body: JSON.stringify({ actionName: "follow", action, id }),
+  //   };
+  //   let response = await fetch("/socialapp/updatePost", opt);
+  //   let value = await response.json();
+  //   console.log(value);
+  //   refresh();
+  // };
 
   const imgPreview=(images)=>{
     setimgWin(true)
     setPreviewImg(images)
   }
 
-  return (
+  return (profileData &&
     <div className="PostsDisplay">
-      <h1>Posts</h1>
+      <h1>{postHeading}</h1>
       {/* <hr className='profileHeadinghr'/> */}
+      {posts.length==0?<div className="noPosts">No Posts yet...</div>:<>
       {posts.map((post) => (
         <div key={post.id}>
           <div className="headingContainerpost">
@@ -194,12 +236,14 @@ export default function Posts({
               <img src={`/media/${post.profilepic}`} alt="dp" />
             </div>
             <div className="postHeading">
-              <Link to="#">
+              <button onClick={()=>{getOtherProfile(post.id)}}>
                 <b>{post.username}</b>
-              </Link>
+              </button>
               <label>{convertDate(post.timestamp_created)}</label>
             </div>
+            {post.username===post.accountUserName?
               <Dropdown {...{post,setEditPost,setEditPost_Post,getCsrf,csrfValue,fetchPosts}}/>
+              :''}
           </div>
           <div className="postDescription">
             <p>{post.description}</p>
@@ -225,25 +269,28 @@ export default function Posts({
               <span>{post.like.length}</span>
             </div>
             <div>
-              <button className="commentButton" onClick={()=>{handleComment(post.id)}}>
+              {/* {console.log("profileData.status",profileData.status,profileData)} */}
+              <button disabled={profileData.status==='User unauthenticated' && post.comments===0?true:false} className="commentButton" onClick={()=>{handleComment(post.id)}}>
                 <img src={comment} />
                 <span className="commentSpan">{post.comments}</span>
               </button>
             </div>
             <div>
               {post.followers.includes(post.accountUserName) ? (
-                <button onClick={() => handleFollow("unfollow", post.username)}>
+                <button disabled={post.accountUserName===post.username?true:false} onClick={() => handleFollow("unfollow", post.username)}>
                   <img src={unfollow} />
                 </button>
               ) : (
-                <button onClick={() => handleFollow("follow", post.username)}>
+                <button disabled={post.accountUserName===post.username?true:false} onClick={() => handleFollow("follow", post.username)}>
                   <img src={follow} />
                 </button>
               )}
             </div>
           </div>
           <div className="commentsDiv" id={`comment${post.id}`}>
+            {profileData.status==='User unauthenticated'?"":
             <Comments {...{post,getCsrf,csrfValue,fetchPosts,fetchComment,submitComment}}/>
+          }
             <hr />
             {comments.map((comment)=>(
               <div className="commentDispContainer" key={comment.id}>
@@ -264,6 +311,7 @@ export default function Posts({
           {/* <hr /> */}
         </div>
       ))}
+          </>  }
     </div>
   );
 }

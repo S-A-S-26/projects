@@ -33,7 +33,7 @@ export default function EditProfile({getCsrf,csrfValue,getProfile,profileData}) 
     let value = await res.json()
     console.log(value)
     // navigate("/Profile")
-    getProfile("/Profile")
+    getProfile()
   }
 
   const handleFile=(event)=>{

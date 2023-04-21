@@ -251,27 +251,38 @@ hr {
 
   // navigatorWindow
 
-  .NavigatorWindow,
-  .adds {
-    .navProfilepic{
-      margin:0;
-      border-bottom: 1px solid #e8e8e8;
-      background: linear-gradient(white,blueviolet);
+  .NavigatorWindow{
+    .navProfilepic {
+      // new profile pic style
+      display: flex;
+      align-items: center;
+
+
+      margin: 0;
+      // border-bottom: 1px solid #e8e8e8;
+      background: linear-gradient(white, $primary);
       // height: 25rem;
-      div{
-        margin:0;
-        height: 23rem;
-        img{
+      div {
+        margin: 0;
+        // height: 23rem;
+        // new profile style
+        height: 10rem;
+        width: 10rem;
+        margin: 2rem;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
           object-fit: cover;
           box-shadow: 0px 3px 14px 4px #6e5cef;
         }
       }
-      b{
+      b {
         font-size: 2rem;
-        color:white;
+        color: white;
         // text-decoration: underline;
       }
     }
+    
     text-align: center;
     overflow: hidden;
     background-color: $white;
@@ -287,14 +298,14 @@ hr {
       margin-bottom: 3rem;
 
       button {
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: $new-fontprime;
       }
       a {
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: $new-fontprime;
         button {
-          font-size: 2rem;
+          font-size: 1.8rem;
           color: $new-fontprime;
         }
       }
@@ -319,6 +330,8 @@ hr {
       text-align: center;
       font-size: 3rem;
       color: #1d3146;
+      text-shadow: 1px 1px 2px;
+      margin:1rem;
     }
     // Profile
     .displayProfile {
@@ -341,7 +354,7 @@ hr {
       }
       .profileContent {
         z-index: -1;
-        min-height: 50rem;
+        min-height: 60rem;
         // Profile display
         .profilePicDisp {
           height: 30rem;
@@ -470,6 +483,12 @@ hr {
     //  posts display
     // ################################################################
     .PostsDisplay {
+      .noPosts{
+        font-size: 4rem;
+        text-align: center;
+        line-height: 63rem;
+        text-shadow: 1px 1px 2px;
+      }
       div {
         .headingContainerpost {
           display: grid;
@@ -482,7 +501,7 @@ hr {
             align-items: center;
             border-bottom: 1px solid $primary;
 
-            a {
+            button {
               font-size: 2rem;
             }
             label {
@@ -736,17 +755,17 @@ hr {
   transform: translate(-50%, -50%);
   text-align: center;
   padding: 2rem;
-  b{
+  b {
     font-size: 3rem;
   }
-  div{
+  div {
     width: 44rem;
     margin: 2rem auto;
-    textarea{
+    textarea {
       width: 100%;
       resize: none;
       height: 20rem;
-      border:  solid $border-color;
+      border: solid $border-color;
       text-align: center;
     }
   }
@@ -760,42 +779,39 @@ hr {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    button{
+    button {
       position: relative;
-      .imgMask{
+      .imgMask {
         position: absolute;
         opacity: 0;
-        transition:.5s;
-        &:hover{
+        transition: 0.5s;
+        &:hover {
           background-color: #959595;
           opacity: 0.7;
           line-height: 8rem;
           font-size: 4rem;
-         
         }
       }
     }
-    div{
+    div {
       height: 10rem;
       border: 1px solid;
       width: 15rem;
-      margin:1rem 1rem;
-        img{
-          object-fit: cover;
-       
-        }
-      
+      margin: 1rem 1rem;
+      img {
+        object-fit: cover;
+      }
     }
   }
-  .editpost_btn{
+  .editpost_btn {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4rem;
-    div{
-      margin:0;
+    div {
+      margin: 0;
       width: fit-content;
-      label{
+      label {
         font-size: 1.2rem;
         padding: 0.5rem 1rem;
       }
@@ -803,17 +819,19 @@ hr {
   }
 }
 
-
-.imgPreview{
+// ################################################################
+// Image preview
+// ################################################################
+.imgPreview {
   position: fixed;
   z-index: 100;
   width: 75rem;
   // border: solid;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   height: 70rem;
-  div{
+  div {
     height: 100%;
   }
   button {
@@ -828,11 +846,66 @@ hr {
     &:disabled {
       display: none;
     }
-    &:hover{
+    &:hover {
       opacity: 0.8;
       height: 3.5rem;
     }
-  }  
+  }
+}
+
+// ################################################################
+// Following third tab
+// ################################################################
+.adds{
+  margin: 2rem;
+  // padding: 5rem;
+  border-radius: 3rem;
+  height: fit-content;
+  box-shadow: 0px 0px 37px -27px blue;
+  position: sticky;
+  top: 7rem;
+  overflow: auto;
+  // padding: 2rem;
+  hr{
+    background-color: $border-color;
+  }
+  .noFollowing{
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 2rem;
+  }
+  .extraHeading{
+    // margin:2rem;
+    padding: 2rem;
+    text-align: center;
+    background: linear-gradient(white,rgba(29,0,230,.6392156863));
+    b{
+      font-size: 2rem;
+      color:white;
+    }
+  }
+  .containerFollowing{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin:1rem;
+    
+    .followingImg{
+      height: 5rem;
+      width: 5rem;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 50%;
+      img{
+        object-fit: cover;
+      }
+    }
+    .followingUsername{
+      margin:0;
+      font-size: 1.6rem;
+    }
+  }
 }
 
 // global
@@ -853,4 +926,20 @@ p {
 }
 b {
   color: $new-fontprime;
+}
+
+@media (max-width: 756px) {
+  html {
+    font-size: 40%;
+  }
+  .containerdiv {
+    display: block;
+  }
+  .NavigatorWindow,
+  .adds {
+    display: none;
+  }
+  .imgPreview {
+    width: 90vw;
+  }
 }

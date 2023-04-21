@@ -3,7 +3,7 @@ import frontarrow from '../assets/frontarrow.png'
 import backarrow from '../assets/backarrow.png'
 import { useNavigate } from 'react-router-dom'
 
-export default function AddPost({getCsrf,csrfValue}) {
+export default function AddPost({getCsrf,csrfValue,fetchPosts}) {
     
     const[files,setfiles]=useState([])
     const[count,setcount]=useState(0)
@@ -79,6 +79,7 @@ export default function AddPost({getCsrf,csrfValue}) {
         console.log(res)
         let value = await res.json()
         console.log(value)
+        fetchPosts("all")
         navigate("/")
 
 

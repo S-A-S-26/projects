@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import edit from './../assets/edit.png'
+import Posts from './Posts'
 
-export default function Profile({profileData}) {
+export default function Profile({profileData,getProfile,fetchPosts,posts,getCsrf,csrfValue,setEditPost,setEditPost_Post,setimgWin,previewImg,setPreviewImg,showReg,showLogin,postHeading}) {
   console.log(profileData)
   console.log(profileData.followers)
   console.log(profileData.followers.length)
   return (
+    <>
     <div className = "displayProfile">
       <h1>Profile</h1>
       <hr className='profileHeadinghr'/>
@@ -23,11 +25,11 @@ export default function Profile({profileData}) {
           <div className='followersfollowing'>
             <div>
               <label>{`${profileData.followers.length}`}</label>
-              <b>followers</b>
+              <b>Followers</b>
             </div>
             <div>
               <label>{`${profileData.following.length}`}</label>
-              <b>following</b>
+              <b>Following</b>
             </div>
           </div>
           <div style={{display:profileData.status==null || profileData.status==='' ?'none':'block'}}>
@@ -39,5 +41,7 @@ export default function Profile({profileData}) {
           </div>
         </div>
     </div>
+    <Posts {...{getProfile,fetchPosts,posts,getCsrf,csrfValue,setEditPost,setEditPost_Post,setimgWin,previewImg,setPreviewImg,showReg,showLogin,postHeading}}/>
+    </>
   )
 }

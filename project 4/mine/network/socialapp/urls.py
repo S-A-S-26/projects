@@ -13,6 +13,10 @@ urlpatterns = [
     path('getPosts/<str:type>',views.getPosts,name='getPosts'),
     path('updatePost',views.postUpdate,name='updatePost'),
     path('getComments/<str:id>',views.getComments,name='getComments'),
+    path('getProfile/<str:type>',views.getProfile,name='getProfile'),
+    path('getOtherProfile/<str:type>',views.getOtherProfile,name='getOtherProfile'),
+    path('getfollowing',views.getfollowing,name='getfollowing'),
+    
     
 
     re_path(r'^.*',views.Redirect_to_home,name='redirect_home'),

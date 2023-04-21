@@ -12,7 +12,7 @@
     "src": "VarelaRound-Regular.ttf"
   },
   "index.css": {
-    "file": "static/socialapp/index.eb8767c3.css",
+    "file": "static/socialapp/index.78aaf9fa.css",
     "src": "index.css"
   },
   "index.html": {
@@ -30,9 +30,9 @@
       "static/socialapp/Sarabun-Regular.b8150084.ttf"
     ],
     "css": [
-      "static/socialapp/index.eb8767c3.css"
+      "static/socialapp/index.78aaf9fa.css"
     ],
-    "file": "static/socialapp/index.d5cd76bc.js",
+    "file": "static/socialapp/index.3c34a88c.js",
     "isEntry": true,
     "src": "index.html"
   },
