@@ -1,0 +1,23 @@
+//1.on adding new post the main posts page is not refreshing
+//2.follow unfollow on others profile
+//3.user should not be allowed to follow self
+//4.on adding comment comment count not updating
+//5.pointers needs to be updated
+//6.pagination
+//7.when no user handle otheruserProfile
+//8.icons for navigation
+//9.comment section profile pic if no pic then shows blank same goes for post profile
+//10.every time posts is fetched from other than scroll it should be reset
+//11.post is not defined if post len==0
+12.check update for 
+	1.like
+	2.comment
+	3.submit comment
+	4.del comment
+	5.follow
+13.removing editing from profile page should take it back to profile
+//14.block scroll when modal is open
+//15.message if user does not exist or wrong login password
+16.tooltip for everything 
+17.mobile port settings responsiveness
+18.check empty post not allowed

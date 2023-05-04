@@ -1,0 +1,107 @@
+{
+  "Dosis-VariableFont_wght.ttf": {
+    "file": "static/socialapp/Dosis-VariableFont_wght.e6b60167.ttf",
+    "src": "Dosis-VariableFont_wght.ttf"
+  },
+  "Sarabun-Regular.ttf": {
+    "file": "static/socialapp/Sarabun-Regular.b8150084.ttf",
+    "src": "Sarabun-Regular.ttf"
+  },
+  "VarelaRound-Regular.ttf": {
+    "file": "static/socialapp/VarelaRound-Regular.4ecfc7e6.ttf",
+    "src": "VarelaRound-Regular.ttf"
+  },
+  "index.css": {
+    "file": "static/socialapp/index.09b4c528.css",
+    "src": "index.css"
+  },
+  "index.html": {
+    "assets": [
+      "static/socialapp/navProfile.94d87e59.png",
+      "static/socialapp/navFollowing.11208019.png",
+      "static/socialapp/navAddPost.dcff4c2c.png",
+      "static/socialapp/edit.72b67ac4.png",
+      "static/socialapp/likeiconunliked.2bb6d287.png",
+      "static/socialapp/dislike.6a0baf27.png",
+      "static/socialapp/comment.dd157464.png",
+      "static/socialapp/follow_.4ebb3b63.png",
+      "static/socialapp/unfollow_.d5236607.png",
+      "static/socialapp/frontarrow.41fe34a4.png",
+      "static/socialapp/backarrow.c09d2e54.png",
+      "static/socialapp/followinglist.9a116f5b.png",
+      "static/socialapp/Dosis-VariableFont_wght.e6b60167.ttf",
+      "static/socialapp/VarelaRound-Regular.4ecfc7e6.ttf",
+      "static/socialapp/Sarabun-Regular.b8150084.ttf"
+    ],
+    "css": [
+      "static/socialapp/index.09b4c528.css"
+    ],
+    "file": "static/socialapp/index.5c2a9494.js",
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "src/assets/backarrow.png": {
+    "file": "static/socialapp/backarrow.c09d2e54.png",
+    "src": "src/assets/backarrow.png"
+  },
+  "src/assets/comment.png": {
+    "file": "static/socialapp/comment.dd157464.png",
+    "src": "src/assets/comment.png"
+  },
+  "src/assets/dislike.png": {
+    "file": "static/socialapp/dislike.6a0baf27.png",
+    "src": "src/assets/dislike.png"
+  },
+  "src/assets/edit.png": {
+    "file": "static/socialapp/edit.72b67ac4.png",
+    "src": "src/assets/edit.png"
+  },
+  "src/assets/follow_.png": {
+    "file": "static/socialapp/follow_.4ebb3b63.png",
+    "src": "src/assets/follow_.png"
+  },
+  "src/assets/followinglist.png": {
+    "file": "static/socialapp/followinglist.9a116f5b.png",
+    "src": "src/assets/followinglist.png"
+  },
+  "src/assets/frontarrow.png": {
+    "file": "static/socialapp/frontarrow.41fe34a4.png",
+    "src": "src/assets/frontarrow.png"
+  },
+  "src/assets/likeiconunliked.png": {
+    "file": "static/socialapp/likeiconunliked.2bb6d287.png",
+    "src": "src/assets/likeiconunliked.png"
+  },
+  "src/assets/navAddPost.png": {
+    "file": "static/socialapp/navAddPost.dcff4c2c.png",
+    "src": "src/assets/navAddPost.png"
+  },
+  "src/assets/navFollowing.png": {
+    "file": "static/socialapp/navFollowing.11208019.png",
+    "src": "src/assets/navFollowing.png"
+  },
+  "src/assets/navProfile.png": {
+    "file": "static/socialapp/navProfile.94d87e59.png",
+    "src": "src/assets/navProfile.png"
+  },
+  "src/assets/react.svg": {
+    "file": "static/socialapp/react.35ef61ed.svg",
+    "src": "src/assets/react.svg"
+  },
+  "src/assets/unfollow_.png": {
+    "file": "static/socialapp/unfollow_.d5236607.png",
+    "src": "src/assets/unfollow_.png"
+  },
+  "src/font/Dosis/Dosis-VariableFont_wght.ttf": {
+    "file": "static/socialapp/Dosis-VariableFont_wght.e6b60167.ttf",
+    "src": "src/font/Dosis/Dosis-VariableFont_wght.ttf"
+  },
+  "src/font/Sarabun/Sarabun-Regular.ttf": {
+    "file": "static/socialapp/Sarabun-Regular.b8150084.ttf",
+    "src": "src/font/Sarabun/Sarabun-Regular.ttf"
+  },
+  "src/font/Varela_Round/VarelaRound-Regular.ttf": {
+    "file": "static/socialapp/VarelaRound-Regular.4ecfc7e6.ttf",
+    "src": "src/font/Varela_Round/VarelaRound-Regular.ttf"
+  }
+}
