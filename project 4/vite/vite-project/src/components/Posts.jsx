@@ -253,7 +253,7 @@ export default function Posts({
     <div className="PostsDisplay">
       <h1>{postHeading}</h1>
       {/* <hr className='profileHeadinghr'/> */}
-      {posts.length==0?<div className="noPosts">No Posts yet...</div>:<>
+      {posts.posts.length==0?<div className="noPosts">No Posts yet...</div>:<>
       {posts.posts.map((post) => (
         <div key={post.id}>
           <div className="headingContainerpost">

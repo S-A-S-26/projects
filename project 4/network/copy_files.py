@@ -6,9 +6,9 @@ import time
 # print(os.listdir())
 
 #to the build folder
-src=r'E:\web win\cs50\project 4\paginator\vite\vite-project\my'
+src=r'E:\web win\cs50\project 4\vite\vite-project\my'
 #to the backend server folder where file needs to be placed
-des=r'E:\web win\cs50\project 4\paginator\network\socialapp'
+des=r'E:\web win\cs50\project 4\network\socialapp'
 
 
 

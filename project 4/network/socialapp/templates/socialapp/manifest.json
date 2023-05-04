@@ -1,16 +1,4 @@
 {
-  "Dosis-VariableFont_wght.ttf": {
-    "file": "static/socialapp/Dosis-VariableFont_wght.e6b60167.ttf",
-    "src": "Dosis-VariableFont_wght.ttf"
-  },
-  "Sarabun-Regular.ttf": {
-    "file": "static/socialapp/Sarabun-Regular.b8150084.ttf",
-    "src": "Sarabun-Regular.ttf"
-  },
-  "VarelaRound-Regular.ttf": {
-    "file": "static/socialapp/VarelaRound-Regular.4ecfc7e6.ttf",
-    "src": "VarelaRound-Regular.ttf"
-  },
   "index.css": {
     "file": "static/socialapp/index.09b4c528.css",
     "src": "index.css"
@@ -36,7 +24,7 @@
     "css": [
       "static/socialapp/index.09b4c528.css"
     ],
-    "file": "static/socialapp/index.5c2a9494.js",
+    "file": "static/socialapp/index.bca6b2cb.js",
     "isEntry": true,
     "src": "index.html"
   },

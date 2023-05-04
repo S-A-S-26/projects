@@ -1,0 +1,21 @@
+1.basic navigation-pass
+2.profile
+	image preview-pass
+	status-pass
+	edit image/status-pass
+	1.my posts not showing no posts here-fixed
+3.posts
+	like/dislike=pass
+	comment,empty comment,remove comment-pass
+	follow/unfolllow-pass
+	paginator-pass
+4.following-pass
+5.add post
+	add post,edit post =pass
+	add image,edit image =pass
+	image no val=pass	
+
+
+3.registration-pass
+4.logout-pass
+5.login-pass
