@@ -1,0 +1,46 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="default-src*; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://127.0.0.1:8000/favicon.ico"> -->
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+    <title>mail{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'mailsys/styles.css' %}">
+</head>
+<body>
+  
+  <div class="window">
+    <div class="navbar">
+      <div>
+        <h2 style="margin-left:1rem"><a style="text-decoration:none;color:rgba(245, 245, 245, 0.727)" href="{% url 'index' %}">Mail</a></h2>
+      </div>
+      <div style="margin-right:1rem">
+        <ul style="margin:0px">
+          {% if request.user.is_authenticated %}
+            <li><a href='logout' id="loginout">Logout</a></li>
+          {% else %}
+            <li><a href='login' id="login">Login</a></li>
+            <li><a href='register' id="register">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    <div id="alert">
+      {% if message %}
+        {{message}}
+      {% endif %}
+    </div>
+
+    {% block body %}
+    
+    {% endblock %}
+  </div>
+
+  {% block script %}
+
+  {% endblock %}
+  
+</body>
+</html>
