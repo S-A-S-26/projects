@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <!-- <title>Encyclopedia</title> -->
         <title>{% block title %} {% endblock %}</title>
         <link rel="stylesheet" href="..\..\static\mywikiapp\style.css">
+        <link rel="icon" href="{% static 'favicon/favicon.png' %}">
         
         {% block head %}
         {% endblock %}
@@ -14,8 +16,9 @@
        
        <div class="main">
 
-            <div class="leftpart">
-
+           <div class="leftpart">
+               
+               <div class="navbar">
                 <h2 id="leftheading">Wiki</h2>
 
                 <div class="search_container_confinement">
@@ -41,7 +44,6 @@
                     </ul>
                 </div>
 
-                <div class="navbar">
                     <div>
                         {% block navbar %}{% endblock %}
                     </div>

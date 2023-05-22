@@ -53,13 +53,14 @@ export default function Dropdown({refresh,post,setEditPost,setEditPost_Post,getC
           },
           body: JSON.stringify({'id':post.id}),
         };
-    
-        let res = await fetch("/socialapp/updatePost", opt);
-        console.log(res);
-        let value = await res.json();
-        console.log(value);
-        // fetchPosts("all")
-        refresh()
+        try {
+            let res = await fetch("/socialapp/updatePost", opt);
+            let value = await res.json();
+            refresh()
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
     
   return (

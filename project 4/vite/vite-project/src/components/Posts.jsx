@@ -115,10 +115,15 @@ export default function Posts({
       },
       body: JSON.stringify({ actionName: "like", action, id }),
     };
-    let response = await fetch("/socialapp/updatePost", opt);
-    let value = await response.json();
-    console.log(value);
-    refresh()
+
+    try {
+      let response = await fetch("/socialapp/updatePost", opt);
+      let value = await response.json();
+      refresh()
+      
+    } catch (error) {
+      console.log(error)
+    }
 
   };
 
@@ -129,12 +134,14 @@ export default function Posts({
     const opt = {
       method: "GET",
     };
-    let response = await fetch(`/socialapp/getComments/${id.toString()}`, opt);
-    console.log(response)
-    let value = await response.json();
-    setComments(value)
-    console.log(value);
-    // fetchPosts("all");
+    try {
+      let response = await fetch(`/socialapp/getComments/${id.toString()}`, opt);
+      let value = await response.json();
+      setComments(value)
+      
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const delComment = async (action, id,postid) => {
@@ -148,12 +155,15 @@ export default function Posts({
       },
       body: JSON.stringify({ actionName: "comment", action, id }),
     };
-    let response = await fetch("/socialapp/updatePost", opt);
-    console.log(response)
-    let value = await response.json();
-    console.log(value);
-    // fetchPosts("all");
-    fetchComment(postid)
+
+    try {
+      let response = await fetch("/socialapp/updatePost", opt);
+      let value = await response.json();
+      fetchComment(postid)
+      
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const submitComment = async (action, id) => {
@@ -174,13 +184,18 @@ export default function Posts({
       },
       body: JSON.stringify({ actionName: "comment", action, id, comment }),
     };
-    let response = await fetch("/socialapp/updatePost", opt);
-    let value = await response.json();
-    console.log(value);
-    document.getElementById(`commentText${id}`).value=''
-    // fetchPosts("all");
-    fetchComment(id);
-    refresh()
+
+    try {
+      let response = await fetch("/socialapp/updatePost", opt);
+      let value = await response.json();
+      console.log(value);
+      document.getElementById(`commentText${id}`).value=''
+      fetchComment(id);
+      refresh()
+      
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   useEffect(()=>{
@@ -192,7 +207,6 @@ export default function Posts({
     
     console.log(prevCommentBox)
     fetchComment(id)
-    // const commentDiv=document.querySelector(`#comment${id}`)
     const commentDiv=document.getElementById(`comment${id}`)
     console.log(commentDiv)
     let display=commentDiv.style.display
@@ -202,7 +216,6 @@ export default function Posts({
     else{
       console.log('prevCommentBox',prevCommentBox)
       if (prevCommentBox != ''){
-        // const prevDiv=document.querySelector(`#comment${prevCommentBox}`)
         const prevDiv=document.getElementById(`comment${prevCommentBox}`)
         prevDiv.classList.remove('active')
       }
@@ -213,36 +226,16 @@ export default function Posts({
     
 
     if (display=='none'){
-      // commentDiv.style.display='block'
       commentDiv.classList.toggle('active')
     }
     else if (display=='block'){
       commentDiv.classList.toggle('active')
-      // setTimeout(()=>{commentDiv.style.display='none'},1000)
+
       
     }
   };
 
-  // const handleFollow = async (action, id) => {
-  //   if(profileData.status==='User unauthenticated'){
-  //     setLogin(true)
-  //     return
-  //   }
-  //   await getCsrf;
-  //   let csrf = csrfValue();
-  //   const opt = {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "X-CSRFToken": csrf,
-  //     },
-  //     body: JSON.stringify({ actionName: "follow", action, id }),
-  //   };
-  //   let response = await fetch("/socialapp/updatePost", opt);
-  //   let value = await response.json();
-  //   console.log(value);
-  //   refresh();
-  // };
+
 
   const imgPreview=(images)=>{
     setimgWin(true)
@@ -252,7 +245,7 @@ export default function Posts({
   return (profileData &&
     <div className="PostsDisplay">
       <h1>{postHeading}</h1>
-      {/* <hr className='profileHeadinghr'/> */}
+
       {posts.posts.length==0?<div className="noPosts">No Posts yet...</div>:<>
       {posts.posts.map((post) => (
         <div key={post.id}>

@@ -9,44 +9,25 @@ import followinglist from '../assets/followinglist.png'
 
 export default function NavigatorWindow({ setPageNo,currentLoc,setCurrentLoc,getCsrf, csrfValue, getProfile,profileData,setProfileData,fetchPosts,setLogin }) {
   const navigate=useNavigate()
-  // const getProfile = async () => {
-  //   console.log("getProfile");
-  //   let response = await fetch("/socialapp/update_profile", { method: "GET" });
-  //   let value = await response.json();
-  //   console.log(value)
-  //   setProfileData(value)
-  // };
 
-  // useEffect(() => {
-  //   getProfile();
-  //   // fetchPosts("all");
-  //   // setInterval()
-  // }, []);
 
-  // const [loaded,setloaded]=useState(false)
-  // useEffect(() => {
-  //   setloaded(true)
-  //   // fetchPosts("all");
-  //   // setInterval()
-  // }, [profileData]);
-
-  useEffect(()=>{
-    console.log('current loc useeffect form navigator window called')
-    if (currentLoc==='Profile'){
-      // fetchPosts('self');
+  // useEffect(()=>{
+  //   console.log('current loc useeffect form navigator window called')
+  //   if (currentLoc==='Profile'){
+  //     // fetchPosts('self');
       
-      console.log("current loc from navigator window:-",currentLoc)
-    }else if (currentLoc==='Following'){
-      fetchPosts('following');
-    }else if(currentLoc==='followinglist'){
-      return
-    }else{
-      navigate('/Posts')
+  //     console.log("current loc from navigator window:-",currentLoc)
+  //   }else if (currentLoc==='Following'){
+  //     fetchPosts('following');
+  //   }else if(currentLoc==='followinglist'){
+  //     return
+  //   }else{
+  //     navigate('/')
       
-    }
-    setPageNo(1)
+  //   }
+  //   setPageNo(1)
     
-  },[currentLoc])
+  // },[currentLoc])
 
 
 
@@ -92,7 +73,7 @@ export default function NavigatorWindow({ setPageNo,currentLoc,setCurrentLoc,get
       setLogin(true)
       return
     }
-    navigate("/AddPost")
+    setCurrentLoc('addPost')
   }
 
 
@@ -103,28 +84,18 @@ export default function NavigatorWindow({ setPageNo,currentLoc,setCurrentLoc,get
         <div>
             
             <button style={{height:'4rem'}} onClick={()=>{handleProfilebtn()}}><img src={navProfile} alt="Profile"/></button>
-          {/* <Link to="/Profile">
-          </Link> */}
         </div>
-        {/* <hr /> */}
         <div>
           <Link onClick={()=>{handlePostsbtn()}} to="/"><img src={navPosts} alt="Postimg"/></Link>
         </div>
-        {/* <hr /> */}
         <div>
             <button onClick={()=>{handleFollowingbtn()}}><img src={navFollowing} alt="Following"/></button>
-        {/* <Link to="/">
-        </Link> */}
         </div>
-        {/* <hr /> */}
         <div>
           <button onClick={()=>{handleAddPost()}}><img src={navAddPost} alt="AddPost"/></button>
-          {/* <Link to="/AddPost">Add a Post</Link> */}
         </div>
-        {/* <hr /> */}
         <div>
           <Link onClick={()=>{setCurrentLoc('followinglist')}} to='/Following'><img src={followinglist} alt="followinglist"/></Link>
-          {/* <Link to="/AddPost">Add a Post</Link> */}
         </div>
       </div>
     </div>

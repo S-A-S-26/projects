@@ -1,3 +1,10 @@
+:root{
+    --fontColor:black;
+    --boxShadowdef:#e1e1e1;
+    --background:white;
+    --navBackground:black;
+}
+
 *{
     margin:0;
     padding:0;
@@ -7,11 +14,14 @@
 html,body{
     /* width:100%; */
     height:100%;
+    color:var(--fontColor);
+    margin: 0;
+    padding: 0;
 }
 .grand_container{
     /* border:rgb(191, 238, 20) solid; */
     min-height:100%;
-    background-color: #33c9f1;
+    background-color: var(--background);
 }
 p{
     font-size: 15px;
@@ -21,7 +31,7 @@ p{
 }
 #div_title_main,#title_main,#header{
     /* background-color: rgb(46 200 241 / 86%); */
-    background-color:black;
+    background-color:var(--navBackground);
     
 }
 #div_title_main{
@@ -29,7 +39,7 @@ p{
     top:0px;
     /* border: rgba(247, 240, 240, 0.996) solid; */
     color:white;
-    box-shadow: 1px 4px 12px rebeccapurple;
+    box-shadow: 1px 4px 12px var(--boxShadowdef);
 }
 #title_main{
     text-align: center;
@@ -68,13 +78,13 @@ p{
 .login_status{
     /* margin-top: 5px; */
     text-align: right;
-    background-color: #33c9f1;
+    background-color: var(--background);
     padding-right: 5px;
 
 }
 .container,.inner_container{
     /* background-color:#f1a133; */
-    background-color: #33c9f1;
+    background-color: var(--background);
     /* background-color:#8a33f1; */
     /* background-color:#747a7b; */
 }
@@ -87,7 +97,7 @@ p{
 .inner_container{
     padding-top: 40px;
     padding-left: 5px;
-    color:white;
+    color:rgb(15, 14, 14);
     /* background-color: #33c9f1; */
     /* background-color:#f1a133; */
 }
@@ -98,16 +108,15 @@ p{
     height:100vh;
     display:grid;
     place-items: center;
-    color:white;
+    color:var(--fontColor);
 }
 
 .login_inner_container{
-    border:black solid;
     width:fit-content;
     height:fit-content;
     padding:20px;
     border-radius: 18px;
-    box-shadow: 0px 8px 12px rebeccapurple;
+    box-shadow: 0px 8px 12px var(--boxShadowdef);
    
 }
 .login_inner_container>form>div{
@@ -137,8 +146,16 @@ p{
     font-size: 18px;
     border:none;
     background-color:transparent;
-    box-shadow:0px 1px 3px rebeccapurple;
-    color:white;
+    box-shadow:0px 1px 3px var(--boxShadowdef);
+    color:var(--fontColor);
+    padding: 0;
+    margin:0;
+}
+#login_button>input:hover{
+
+    background-color:rgb(232, 232, 229);
+
+
 }
 /* ***********************************register********* */
 /* #message_box{
@@ -158,12 +175,11 @@ p{
     display:grid;
     grid-auto-flow:row;
     grid-auto-flow: row;
-    border: black solid;
     /* row-gap: 4em; */
     width: auto;
     /* margin: 3px; */
     text-align: left;
-    box-shadow: 0px 0px 3px rebeccapurple;
+    box-shadow: 0px 0px 8px var(--boxShadowdef);
     padding: 15px 25px 25px 25px;
     border-radius: 10px;
 }
@@ -182,18 +198,18 @@ form>input{
     background-color: transparent;
     border-radius: 5px;
     border: none;
-    box-shadow: 0px 0px 3px rebeccapurple;
-    color: white;
+    box-shadow: 0px 0px 3px var(--boxShadowdef);
+    color: var(--fontColor);
 }
 form>input:hover{
     margin-left: 40%;
     height: 25px;
     width: 74px;
-    background-color: blue;
+    background-color: rgb(212, 212, 212);
     border-radius: 5px;
     border: none;
-    box-shadow: 0px 0px 3px rebeccapurple;
-    color: white;
+    box-shadow: 0px 0px 3px var(--boxShadowdef);
+    color: var(--fontColor);
 }
 /* **************************Active listing************** */
 .listing_holder{
@@ -203,25 +219,22 @@ form>input:hover{
     grid-auto-columns: 50% 50%; */
 }
 .list{
-    border: 1px rgb(0 0 0) solid;
     height: 260px;
     margin:20px;
     display:grid;
     grid-auto-flow: column;
     grid-auto-columns: 20% 65%;
-    box-shadow: 0px 0px 7px 1px rebeccapurple;
+    box-shadow: 0px 0px 7px 1px var(--boxShadowdef);
     column-gap: 70px;
     border-radius: 15px;
     align-items: center;
+    overflow: hidden;
 }
 .list:hover{
     border: 1px rgb(0 0 0) solid;
-    height: 300px;
-    margin:20px 2px;
     display:grid;
     grid-auto-flow: column;
     grid-auto-columns: 20% 65%;
-    box-shadow: 0px 0px 15px 2px rebeccapurple;
     column-gap: 70px;
     border-radius: 15px;
     align-items: center;
@@ -231,21 +244,21 @@ form>input:hover{
     display:block;
     padding-left: 20px;
     padding-top: 20px;
+    color:var(--fontColor)
 }
 .image{
     /* border:rgb(255, 255, 255) solid; */
     display: flex;
-    margin-left: 20px;
+
     width: 100%;
-    height: 97%;
-    height: 240px;
+    height: 260px;
     align-items:center;
 }
 .image>img{
-    max-width: 100%;
-    max-height: 100%;
-    margin: auto;
-    border:rgb(0, 0, 0) solid;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
 }
 /* .list>div:nth-child(1){
     display: flex;
@@ -259,11 +272,11 @@ form>input:hover{
 .list_detail_image_container{
     display: flex;
     justify-content: center;
-    padding-top: 20px;
+    align-items: center;
     height: 400px;
-    box-shadow: inset 0px 0px 37px 0px rebeccapurple;
+    box-shadow: inset 0px 0px 37px 0px var(--boxShadowdef);
     margin: 0px 20px;
-    border:black solid;
+    /* border:black solid; */
 }
 .list_detail_image_display{
     /* border:rgb(255, 255, 255) solid; */
@@ -284,7 +297,7 @@ form>input:hover{
 .list_detail_info{
     text-align:left;
     margin:20px;
-    color:white;
+    color:var(--fontColor);
     /* border:black solid; */
 }
 .list_detail_info>div{
@@ -305,14 +318,14 @@ form>input:hover{
     
 }
 .list_detail_inner_bid>input{
-    height:20px;
-    border-radius: 4px;
+    height:24px;
+    text-align: center;
     margin-left: 5px;
     background-color: transparent;
-    border-radius: 5px;
+
     border: none;
     box-shadow: 0px 0px 3px rebeccapurple;
-    color: white;
+    color: var(--fontColor);
 }
 #place_bid_but{
     height:20px;
@@ -322,8 +335,12 @@ form>input:hover{
     background-color: transparent;
     border-radius: 5px;
     border: none;
-    box-shadow: 0px 0px 3px rebeccapurple;
-    color: white;
+    box-shadow: 0px 0px 3px var(--boxShadowdef);
+    color: var(--fontColor);
+    transition:0.3s;
+}
+#place_bid_but:hover{
+    background-color: #dfdfdf;
 }
 /* ::placeholder{
     color:white;
@@ -331,17 +348,16 @@ form>input:hover{
 } */
 .list_detail_add_comment{
     margin: 0px 20px 0px 20px;
-    border:black solid;
     padding-bottom: 40px;
-    box-shadow:inset 0px 0px 10px 1px rebeccapurple;
+    box-shadow:inset 0px 0px 10px 1px var(--boxShadowdef);
 }
 .list_detail_add_comment>strong{
     margin-left: 30px;
-    color:white;
+    color:var(--fontColor);
 }
 .list_detail_inner_comment{
     margin: 10px 10px 10px 30px;
-    color:white;
+    color:var(--fontColor);
     /* border:black solid; */
     display:block;
 }
@@ -356,13 +372,20 @@ form>input:hover{
     background-color:#d33535f7;
     border-radius: 5px;
     border: none;
-    box-shadow: 0px 0px 3px rebeccapurple;
+    box-shadow: 0px 0px 3px var(--boxShadowdef);
     color: white;
+    margin:1rem 0rem;
+}
+.list_detail_inner_comment>input:hover{
+    box-shadow:  0px 0px 8px var(--boxShadowdef); 
+    color:red;
+    background-color: white;
+    border:1px solid #d33535f7 ;
 }
 #user_comments_post{
     margin-left: 30px;
     display:grid;
-    box-shadow: 0px 0px 4px 0px rebeccapurple;
+    box-shadow: 0px 0px 4px 0px var(--boxShadowdef);
     border-radius: 5px;
     margin: 5px 5px 5px 30px;
 }
@@ -387,8 +410,11 @@ form>input:hover{
     background-color: transparent;
     border-radius: 5px;
     border: none;
-    box-shadow: 0px 0px 3px rebeccapurple;
-    color: white;
+    box-shadow: 0px 0px 3px var(--boxShadowdef);
+    color: var(--fontColor);
+}
+#Watchlist_btn:hover{
+    background-color: rgb(241, 241, 241);
 }
 
 /* ***************************category************************************ */
@@ -402,7 +428,7 @@ form>input:hover{
     display:grid;
     grid-auto-flow: column;
     grid-auto-columns: 20% 65%;
-    box-shadow: 0px 0px 8px 0px rebeccapurple;
+    box-shadow: 0px 0px 8px 0px var(--boxShadowdef);
     column-gap: 70px;
     border-radius: 15px;
     align-items: center;
@@ -411,6 +437,7 @@ form>input:hover{
     /* background-blend-mode: lighten; */
     font-size: 25px;
     background-color: #33c9f1;
+    transition: 0.3s;
 }
 
 .Categories:hover{
@@ -423,7 +450,7 @@ form>input:hover{
     display:grid;
     grid-auto-flow: column;
     grid-auto-columns: 20% 65%;
-    box-shadow: 0px 0px 15px 2px rebeccapurple;
+    box-shadow: 0px 0px 15px 2px var(--boxShadowdef);
     column-gap: 70px;
     border-radius: 15px;
     align-items: center;

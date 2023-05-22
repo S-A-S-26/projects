@@ -14,7 +14,11 @@
 	add post,edit post =pass
 	add image,edit image =pass
 	image no val=pass	
-
+	when a post is added form following it will go back to following page -needs to fix
+6.other user profile
+	follow/unfollow=pass
+7.following=pass
+8.paginator =pass
 
 3.registration-pass
 4.logout-pass

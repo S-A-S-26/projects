@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,6 +7,7 @@
         {% block head %}
         {% endblock %}
         <link rel="stylesheet" href="{% static 'auction/style.css' %}">
+        <link rel="icon" href="{% static 'favicon/favicon.png' %}"
     </head>
     <body>
         <div class="grand_container">

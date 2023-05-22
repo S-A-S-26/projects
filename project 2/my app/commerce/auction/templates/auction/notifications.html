@@ -1,5 +1,6 @@
 {% extends 'auction/layout.html' %}
 {% load static %}
+{% load humanize %}
 {% block body %}
 <div class="inner_container">
     <h2 style="text-align:center;">Notificatons</h2>
@@ -17,9 +18,9 @@
                             <!-- {{list.Display_Image}} -->
                         </div>
                         <div class="details">
-                            <div><h4 style="color:rgb(52 124 43)">{{notification.Status}} &#8377;</h4></div><br>
+                            <div><h4 style="color:rgb(52 124 43)">{{notification.Status|intcomma}} &#8377;</h4></div><br>
                             <div><h3>{{notification.Title}}</h3></div><br>
-                            <div><h4><strong>Price:  </strong>{{notification.Price}} &#8377;</h4></div><br>
+                            <div><strong>Price:  </strong>{{notification.Price|intcomma}} &#8377;</div><br>
                             <div><strong>Description:  </strong>{{notification.Description}}</div><br> 
                             <!-- <div>{{list.id}}</div>       -->
                         </div>

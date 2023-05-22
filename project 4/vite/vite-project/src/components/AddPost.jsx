@@ -79,13 +79,17 @@ export default function AddPost({getCsrf,csrfValue,fetchPosts}) {
           },
           body:formData
         }
-    
-        let res = await fetch('newpost',opt)
-        console.log(res)
-        let value = await res.json()
-        console.log(value)
-        fetchPosts("all")
-        navigate("/")
+        try {
+            let res = await fetch('newpost',opt)
+            console.log(res)
+            let value = await res.json()
+            console.log(value)
+            fetchPosts("all")
+            navigate("/")
+            
+        } catch (error) {
+            console.log(error)
+        }
 
 
     }
@@ -107,14 +111,13 @@ export default function AddPost({getCsrf,csrfValue,fetchPosts}) {
 
                 <div>
                     <button id='newPostsubmit' onClick={handleSubmit} className='primary-btn' name='submitbutton' type='submit'>Post</button>
-                    {/* <button className='primary-btn' onClick={()=>{test('helllo')}}>Post</button> */}
                 </div>
                 <div className='imgpreviewwin'>
-                    {/* <div>{count}{files.length}</div> */}
+
                     <button className='leftb' type='button' disabled={count==0?true:false} onClick={()=>{setcount(count - 1)}}><img src={backarrow} alt='<'/></button>
                     <button className='rightb' type='button' disabled={count==files.length-1 || files.length == 0?true:false} onClick={()=>{setcount(count + 1)}}><img src={frontarrow} alt='>'/></button>
                     <img id='preview_addpost_img' src='#' alt='post img preivew' style={{display:'none'}}/>
-                    {/* {files==[]?'#':URL.createObjectURL(files[count])} */}
+
                 </div>
 
             </div>

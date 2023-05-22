@@ -1,5 +1,5 @@
 {% extends 'auction/layout.html' %}
-
+{% load humanize %}
 
 {% block title %}
     {{item.Title}}
@@ -29,13 +29,13 @@
         </div>
     </div>
 
-    <div class="list_detail_info"><hr>
+    <div class="list_detail_info">
         <div class="list_detial_price">
-            <strong>Price: </strong>{{item.Price}} &#8377;
-        </div><hr>
+            <strong>Price: </strong>{{item.Price|intcomma}} &#8377;
+        </div>
         <div class="list_detial_description">
             <strong>Description: </strong>{{item.Description}}
-        </div><hr>
+        </div>
         <div class="list_detail_place_bid">
             <form enctype="multipart/form-data" method="POST" action="{% url 'place_bid' %}" name="bid_form">
                 {% csrf_token %}
@@ -58,7 +58,7 @@
                         <p style="color:red;font-weight:600;">
                             {{message_lower_th_highest_bid}}
                             {% if highest_bid %}
-                                {{highest_bid}}
+                                {{highest_bid|intcomma}}
                             {% endif %}
                         </p>
                     {% endif %}
@@ -67,19 +67,19 @@
             </form><br>
             <strong>Recent Bids : 
                 {% if highest_bid %}
-                    Highest Bid value - {{highest_bid}} &#8377;
+                    Highest Bid value : {{highest_bid|intcomma}} &#8377;
                 {% else %}
                     No bids
                 {% endif %}
             </strong> 
             <div class="display_bids_by_users">
                 {% for bid in item.bids.all %}
-                    <p>&#10148; <strong>{{bid.Bid_Added_By}}: </strong>{{bid.Current_Bid}} &#8377;</p>
+                    <p>&#10148; <strong>{{bid.Bid_Added_By}}: </strong>{{bid.Current_Bid|intcomma}} &#8377;</p>
                 {% endfor %}
             </div>
 
             <!-- {{item.bids.Current_Bid}} -->
-        </div><hr>
+        </div>
     </div>
     
     <div class="close_bid">

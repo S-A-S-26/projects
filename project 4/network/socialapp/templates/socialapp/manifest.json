@@ -1,6 +1,6 @@
 {
   "index.css": {
-    "file": "static/socialapp/index.09b4c528.css",
+    "file": "static/socialapp/index.f34fa05b.css",
     "src": "index.css"
   },
   "index.html": {
@@ -22,9 +22,9 @@
       "static/socialapp/Sarabun-Regular.b8150084.ttf"
     ],
     "css": [
-      "static/socialapp/index.09b4c528.css"
+      "static/socialapp/index.f34fa05b.css"
     ],
-    "file": "static/socialapp/index.bca6b2cb.js",
+    "file": "static/socialapp/index.703f9890.js",
     "isEntry": true,
     "src": "index.html"
   },

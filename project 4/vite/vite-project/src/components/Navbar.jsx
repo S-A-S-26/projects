@@ -29,7 +29,7 @@ export default function Navbar({getCsrf,setLogin,setReg,getProfile,profileData,f
       <div className="mobileViewProfieData">
         <div className="mobileViewProfiepic"><img src={profileData.profilepic==="" || profileData.status==='User unauthenticated'?'/media/profilepic/noprofile.png':`/media/${profileData.profilepic}`} /></div>
         <div className="mobileViewProfilename">
-        {profileData.status==='User unauthenticated'?'User not logged-in':profileData.username}
+        {profileData.status==='User unauthenticated'?'no log-in':profileData.username}
         </div>
       </div>
         <div className='logo'>Social</div>

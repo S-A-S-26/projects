@@ -26,7 +26,7 @@ function App() {
   const [otherUserProfile,setotherUserProfile]=useState({})
   const [postHeading,setpostHeading]=useState('Posts')
   const [profileData,setProfileData] = useState(false)
-  const [posts,setPosts]=useState([])
+  const [posts,setPosts]=useState({posts:[]})
   const [editPost,setEditPost]=useState(false)
   const [editPost_Posts,setEditPost_Post]=useState({})
   const [imgWin,setimgWin]=useState(false)
@@ -59,18 +59,15 @@ function App() {
   // },[profileData])
 
   const getCsrf=async()=>{
-      console.log('getCSRF called')
+    try {
       let res= await fetch('/socialapp/getCSRF',{method:'GET'})
       console.log(res)
       return res.json()
-      // fetch('getCSRF',{method:'GET'})
-      // .then((res)=>res.json())
-      // .then((value)=>{
-      //   console.log('csrfresvalue')
-      //   console.log(value)
-        
-      // })
-      // .catch((err)=>{console.log(err)})
+      
+    } catch (error) {
+      console.log(error)
+    }
+
 
     }
  
@@ -87,11 +84,17 @@ function App() {
   }
     
   const getProfile = async (type='self') => {
-    console.log("getProfile");
-    let response = await fetch(`/socialapp/getProfile/${type}`, { method: "GET" });
-    console.log(response)
-    let value = await response.json();
-    console.log('getProfile',value)
+    let value
+    try {
+      let response = await fetch(`/socialapp/getProfile/${type}`, { method: "GET" });
+      console.log(response)
+      value = await response.json();
+      
+    } catch (error) {
+      console.log(error)
+    }
+
+
     if (type==='self'){
       setProfileData(value)
     }
@@ -109,13 +112,17 @@ function App() {
  }
  
  async function fetchOtherUserProfile(){
-  console.log('otherProfileData useRef',otherProfileData.current)
+
+  let value
   if (currentLocOtherProfileFlag){
-    console.log("getOtherProfile");
+  try {
     let response = await fetch(`/socialapp/getOtherProfile/${otherProfileData.current}`, { method: "GET" });
-    console.log(response)
-    let value = await response.json();
-    console.log('getOtherProfile',value)
+    value = await response.json();
+    
+  } catch (error) {
+    console.log(error)
+  }
+
     setotherUserProfile(value)
   }
 }
@@ -131,9 +138,6 @@ function App() {
  },[currentLoc,otherProfileData.current])
 
   useEffect(()=>{
-    console.log("otherUserProfile")
-    console.log(otherUserProfile)
-    console.log(Object.keys(otherUserProfile).length !== 0)
     if (Object.keys(otherUserProfile).length !== 0){
       navigate("/OtherProfile")
       fetchPosts(otherUserProfile.id)
@@ -141,23 +145,18 @@ function App() {
   },[otherUserProfile])
 
   const fetchPosts=async(type='self')=>{
-    console.log("fetchPosts");
-    let response = await fetch(`/socialapp/getPosts/${type}/${pageno}`, { method: "GET" });
-    console.log(response)
-    let value = await response.json();
-    console.log('fetched posts',value)
+    let value
+    try {
+      let response = await fetch(`/socialapp/getPosts/${type}/${pageno}`, { method: "GET" });
+      value = await response.json();
+      
+    } catch (error) {
+      console.log(error)
+    }
+
     setPosts(value)
     setTotalPages(value.totalPages)
-      // setpostMeta({
-      //   "next":{
-      //     "next":value.next,
-      //     "page":value.pageno
-      //   },
-      //   "previous":{
-      //     "previous":value.previous,
-      //     "page":value.pageno
-      //   }
-      // })
+
 
     
     console.log(type)
@@ -242,9 +241,14 @@ function App() {
       },
       body: JSON.stringify({ actionName: "follow", action, id }),
     };
-    let response = await fetch("/socialapp/updatePost", opt);
-    let value = await response.json();
-    console.log(value);
+    try {
+      let response = await fetch("/socialapp/updatePost", opt);
+      let value = await response.json();
+      console.log(value);
+      
+    } catch (error) {
+      console.log(error)
+    }
     refresh();
     if ('otherProfile' in from){
       getOtherProfile(`profile_id:${from.otherProfile}`)

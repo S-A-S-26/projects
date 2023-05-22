@@ -11,8 +11,6 @@ def list_entries():
 
 def save_entry(title,content):
     filename=f"entries/{title}.md"
-    print(f"util.title--.{title}")
-    print(f"util.content--.{content}")
     if default_storage.exists(filename):
         default_storage.delete(filename)
     default_storage.save(filename,ContentFile(content))

@@ -1,6 +1,7 @@
 {% extends 'auction/layout.html' %}
 {% load static %}
 {% block body %}
+{% load humanize %}
 <div class="inner_container">
     <h2 style="text-align:center;">Active Listings</h2>
     <div class="listing_holder">
@@ -19,7 +20,7 @@
                         </div>
                         <div class="details">
                             <div><h3>{{list.Title}}</h3></div><br>
-                            <div><h4><strong>Price:  </strong>{{list.Price}} &#8377;</h4></div><br>
+                            <div><strong>Price:  </strong>{{list.Price|intcomma}} &#8377;</div><br>
                             <div><strong>Description:  </strong>{{list.Description}}</div><br> 
                             <!-- <div>{{list.id}}</div>       -->
                         </div>

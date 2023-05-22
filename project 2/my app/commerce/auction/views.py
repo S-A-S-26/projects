@@ -7,18 +7,17 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import Auction_listings_form
 from django.views.generic import CreateView
-
+from django.contrib.humanize.templatetags.humanize import intcomma
 
 # Create your views here.
 
 
 
 def index(request):
-    listings=Auction_listings.objects.all()
+    listings=Auction_listings.objects.all().order_by('-id')
     return render(request,"auction/index.html",{"listing":listings})
 
-# def index(request):
-#     return render(request,'auctions/index.html')
+
 
 def register_view(request):
     if request.method=='POST':
@@ -83,7 +82,6 @@ def list_details(request,ID):
         wclist=request.user.watchlist.all().values_list('List',flat=True)
     else:
         wclist=[]
-    # print(max(item_detail.bids.all().values_list('Current_Bid'))[0])
     return render(request,'auction/list_details.html',{'item':item_detail,'highest_bid':highest_bid,'watchlist':wclist})
 
 @login_required(login_url='log-in')
@@ -92,9 +90,6 @@ def place_bid(request):
         bid=request.POST['set_bid']        
         list_id=request.POST['id_bid']
         auction_list=Auction_listings.objects.get(id=list_id)   
-        # special_value_highestbid=max(auction_list.bids.all().values_list('Current_Bid')) 
-        # print(type(special_value_highestbid[0]))  
-        # print(special_value_highestbid[0])
         print(auction_list.bids.all().values_list('Current_Bid'))
         print(auction_list.bids.order_by().values_list('Current_Bid').values_list('Current_Bid'))
         if auction_list.bids.all().values_list('Current_Bid'):
@@ -103,7 +98,6 @@ def place_bid(request):
             highest_bid=None
         if int(bid)<auction_list.Price:
             return render(request,'auction/list_details.html',{'item':auction_list,'message_lower_th_price':'Bid should be greater than the price of this item','highest_bid':highest_bid})
-            # return redirect(f'view/{list_id}',{'item':auction_list,'message':'Bid should be greater than the price of this item'})
         elif highest_bid is not None:
             if int(bid)<highest_bid:
                 return render(request,'auction/list_details.html',{'item':auction_list,'message_lower_th_highest_bid':'Bid should be greater than those posted by other users. Highest bid -','highest_bid':highest_bid})
@@ -140,8 +134,8 @@ def close_bid(request):
             print(f"{item.Posted_By.id}{type(item.Posted_By.id)}  ==  {seller_id}{type(seller_id)}")
             buyer_obj=User.objects.filter(username=buyer[0]['Bid_Added_By'])[0]
 
-            winner_status=f"Congratulations! You have won the bidding for this item at {Highest_bid}"
-            looser_status=f"The item you bid on was sold to {buyer_obj} @ {Highest_bid}"
+            winner_status=f"Congratulations! You have won the bidding for this item at {intcomma(Highest_bid)}"
+            looser_status=f"The item you bid on was sold to {buyer_obj} @ {intcomma(Highest_bid)}"
             print(winner_status)
             print(looser_status)
             for i in set(item.bids.all().values_list('Bid_Added_By')):
@@ -160,7 +154,6 @@ def close_bid(request):
         if item.Posted_By.id == int(seller_id):
             print("yes user is the owner of this post")
             item.delete()
-    # return HttpResponseRedirect(f'view/{item_id}')
     return redirect('index')
 #         delete auction
 
@@ -169,7 +162,6 @@ def notification(request):
     list=request.user.notific.all()
     for i in list:
         print(i)
-    # return HttpResponse(f"{list.Status}")
     return render(request,'auction/notifications.html',{'notifications':list})
 
 @login_required(login_url='log-in')
@@ -189,7 +181,6 @@ def watchlist(request):
             print('Add')
             watch_list=Watchlist(List=item_object,Watchlist_user=request.user)
             watch_list.save()
-        # return HttpResponse(f"{item_object}---{request.user}")
         return redirect(f'view/{ID}')
     user_watchlist=request.user.watchlist.filter(Watchlist_user=request.user.id).values_list('List',flat=True)
     watchlist_item=[]

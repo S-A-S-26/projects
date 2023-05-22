@@ -16,10 +16,6 @@ export default function Registration({setAlert,csrfValue,getCsrf,showReg,setReg}
     let Reg_password=document.getElementById('Reg_password').value
     let Reg_confpassword=document.getElementById('Reg_confpassword').value
 
-    // fetch('socialapp/',{method:'GET'})
-    // .then((res)=>res.json())
-    // .then((val)=>console.log(val))
-    // fetch('http://127.0.0.10:8000/socialapp/login_user'
     fetch('/socialapp/register_user',{
                                     method:'POST',
                                     headers:{
